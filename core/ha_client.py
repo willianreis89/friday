@@ -70,6 +70,9 @@ def normalize_name(text: str) -> str:
     return text.strip()
 
 def find_light_entities(search_text: str):
+    if not search_text:
+        return []
+
     search_text = normalize_name(search_text)
 
     matches = []
@@ -79,4 +82,3 @@ def find_light_entities(search_text: str):
             matches.append(e["entity_id"])
 
     return matches
-
