@@ -4,6 +4,8 @@ from core.ha_client import (
     find_light_entities,
     get_lights_on
 )
+from core.context_manager import context
+
 
 # ------------------ HANDLER ------------------
 
@@ -31,15 +33,16 @@ def handle(intent: dict):
 def handle_single(intent: dict):
     action = intent.get("intent")
     search = intent.get("search")
+    from_multi = intent.get("_from_multi", False)
 
-    # apagar luz (inteligente)
-    if action == "off" and search == "luz":
+    # apagar luz genérico
+    if action == "off" and search == "luz" and not from_multi:
         lights_on = get_lights_on()
 
         if not lights_on:
             return {"message": "Nenhuma luz está ligada."}
 
-        if len(lights_on) < 2:
+        if len(lights_on) == 1:
             entity = lights_on[0]["entity_id"]
             call_service("light", "turn_off", {"entity_id": entity})
             return {
@@ -47,32 +50,41 @@ def handle_single(intent: dict):
                 "entities": [entity]
             }
 
-        nomes = [
-            e["entity_id"].replace("light.", "").replace("_", " ")
-            for e in lights_on
-        ]
+        # MAIS DE UMA → ativa confirmação
+        candidates = []
+        for e in lights_on:
+            name = e["entity_id"].replace("light.", "").replace("_", " ")
+            candidates.append({
+                "entity_id": e["entity_id"],
+                "name": name
+            })
 
+        context.set({
+            "action": "off",
+            "candidates": candidates
+        })
+
+        nomes = ", ".join(c["name"] for c in candidates)
         return {
-            "message": f"Mais de uma luz está ligada: {', '.join(nomes)}. Qual cômodo?"
+            "message": f"Mais de uma luz está ligada: {nomes}. Qual luz?"
         }
 
-    # entidade específica
-    entities = find_light_entities(search)
+    # 🔹 fluxo normal (já funciona)
+    from core.ha_client import find_light_entities
 
+    entities = find_light_entities(search)
     if not entities:
         return {"message": "Não encontrei essa luz."}
 
     service = "turn_on" if action == "on" else "turn_off"
     call_service("light", service, {"entity_id": entities})
 
-    acao = "ligada" if action == "on" else "desligada"
     return {
-        "message": f"{search.capitalize()} {acao}.",
+        "message": f"{search} {'ligada' if action == 'on' else 'desligada'}.",
         "entities": entities
     }
 
 # ------------------ MULTI ------------------
-
 def handle_multi(intent: dict):
     """
     Exemplo:
@@ -80,6 +92,9 @@ def handle_multi(intent: dict):
     """
     text = intent.get("text", "")
     partes = [p.strip() for p in text.split(" e ")]
+    debug = {
+        "raw_text": text,
+    }
 
     respostas = []
     entidades = []
@@ -102,7 +117,8 @@ def handle_multi(intent: dict):
         mini_intent = {
             "intent": action,
             "domain": "light",
-            "search": search
+            "search": search,
+            "_from_multi": True   # 👈 flag IMPORTANTÍSSIMA
         }
 
         r = handle_single(mini_intent)
@@ -116,7 +132,66 @@ def handle_multi(intent: dict):
 
     return {
         "message": " | ".join(respostas),
-        "entities": list(set(entidades))
+        "entities": list(set(entidades)),
+        "debug": debug
+    }
+
+# ------------------ CONFIRMACAO ------------------
+def handle_confirmation(intent: dict):
+    payload = context.data["payload"]
+    user_text = intent.get("text", "").strip().lower()
+    context.clear()
+
+    candidates = payload["candidates"]
+
+    # DEBUG VISÍVEL
+    debug = {
+        "user_text": user_text,
+        "candidates": candidates
+    }
+
+    if not user_text:
+        return {
+            "message": "Pode repetir?",
+            "debug": debug
+        }
+
+    # apagar todas
+    if user_text in ("todas", "todas as luzes", "todas luzes"):
+        call_service(
+            "light",
+            "turn_off",
+            {"entity_id": "light.all_light_entities"}
+        )
+        return {
+            "message": "Todas as luzes foram desligadas.",
+            "entities": ["light.all_light_entities"],
+            "debug": debug
+        }
+
+    # match EXATO pelo nome friendly
+    matches = [
+        c["entity_id"]
+        for c in candidates
+        if c["name"] == user_text
+    ]
+
+    if not matches:
+        return {
+            "message": "Não encontrei essa luz.",
+            "debug": debug
+        }
+
+    call_service(
+        "light",
+        "turn_off",
+        {"entity_id": matches}
+    )
+
+    return {
+        "message": f"{user_text} desligada.",
+        "entities": matches,
+        "debug": debug
     }
 
 # ------------------ ALL ------------------

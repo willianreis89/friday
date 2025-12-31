@@ -1,4 +1,3 @@
-import re
 import unicodedata
 
 # ------------------ NORMALIZAÇÃO ------------------
@@ -11,6 +10,9 @@ STOPWORDS = {
 }
 
 def normalize(text: str) -> str:
+    if not text:
+        return ""
+
     text = unicodedata.normalize("NFKD", text)\
         .encode("ascii", "ignore")\
         .decode("ascii")\
@@ -30,21 +32,25 @@ LIGHT_TYPES = ["luz", "led"]
 def parse(text: str):
     raw = normalize(text)
 
-    # ------------------ TODAS AS LUZES (ATALHO GLOBAL) ------------------
+    # ------------------ TODAS AS LUZES ------------------
     if "todas" in raw and ("luz" in raw or "luzes" in raw):
         if any(a in raw for a in ACTIONS_ON):
             return {
                 "intent": "all_on",
                 "domain": "light",
-                "entities": ["light.all_light_entities"]
+                "entities": ["light.all_light_entities"],
+                "text": text
             }
 
         if any(a in raw for a in ACTIONS_OFF):
             return {
                 "intent": "all_off",
                 "domain": "light",
-                "entities": ["light.all_light_entities"]
+                "entities": ["light.all_light_entities"],
+                "text": text
             }
+
+    # ------------------ MULTI ------------------
     actions_found = []
     for a in ACTIONS_ON:
         if a in raw:
@@ -53,19 +59,17 @@ def parse(text: str):
         if a in raw:
             actions_found.append("off")
 
-    # 🔒 GATE DO MULTI
     if (
         len(actions_found) > 1
         and any(t in raw for t in LIGHT_TYPES)
-    ):
+    ) or (" e " in raw and any(a in raw for a in ACTIONS_ON + ACTIONS_OFF)):
         return {
             "intent": "multi",
             "domain": "light",
-            "text": raw
+            "text": text
         }
 
-    # ---------- SINGLE (como já estava funcionando) ----------
-
+    # ------------------ SINGLE ------------------
     if any(a in raw for a in ACTIONS_ON):
         action = "on"
     elif any(a in raw for a in ACTIONS_OFF):
@@ -74,7 +78,8 @@ def parse(text: str):
         return {
             "intent": "error",
             "domain": "light",
-            "response": "Não entendi."
+            "response": "Não entendi.",
+            "text": text
         }
 
     light_type = None
@@ -87,7 +92,8 @@ def parse(text: str):
         return {
             "intent": "error",
             "domain": "light",
-            "response": "Você quer controlar luz ou led?"
+            "response": "Você quer controlar luz ou led?",
+            "text": text
         }
 
     target = raw
@@ -100,5 +106,6 @@ def parse(text: str):
         "intent": action,
         "domain": "light",
         "type": light_type,
-        "search": f"{light_type} {target}".strip()
+        "search": f"{light_type} {target}".strip(),
+        "text": text
     }

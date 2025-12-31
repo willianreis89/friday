@@ -2,16 +2,31 @@ from core.domains import light
 from core.context_manager import context
 
 def dispatch(intent: dict):
-    domain = intent.get("domain")
+    """
+    Ordem correta:
+    1) Confirmação contextual (se existir)
+    2) Domínio light
+    3) Fallback
+    """
 
-    # ---------------- CONTEXTO ----------------
-    # Ex: "sim", "não", confirmações
-    if domain == "context":
-        return context.handle(intent)
+    # ---------- CONFIRMAÇÃO CONTEXTUAL ----------
+    if (
+        context.valid()
+        and "search" not in intent              # não é single normal
+        and intent.get("intent") not in (
+            "multi",
+            "all_on",
+            "all_off"
+        )
+    ):
+        return light.handle_confirmation(intent)
 
-    # ---------------- LUZ ----------------
-    if domain == "light":
+    # ---------- LUZ ----------
+    if intent.get("domain") == "light":
         return light.handle(intent)
 
-    # ---------------- FALLBACK ----------------
-    return intent.get("response", "Não entendi.")
+    # ---------- FALLBACK ----------
+    return intent.get(
+        "response",
+        {"message": "Não entendi. Você poderia repetir?"}
+    )
