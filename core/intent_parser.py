@@ -26,11 +26,42 @@ def normalize(text: str) -> str:
 ACTIONS_ON = ["ligar", "acender"]
 ACTIONS_OFF = ["desligar", "apagar"]
 LIGHT_TYPES = ["luz", "led"]
+CLIMATE_TYPES = ["ar", "ar condicionado", "ar-condicionado"]
 
 # ------------------ PARSER ------------------
 
 def parse(text: str):
     raw = normalize(text)
+
+    # ------------------ CLIMATE ------------------    
+    words = raw.split()
+    
+    if "ar" in words or "ar-condicionado" in raw or "ar condicionado" in raw:
+        if any(a in words for a in ACTIONS_ON):
+            action = "on"
+        elif any(a in words for a in ACTIONS_OFF):
+            action = "off"
+        else:
+            return {
+                "intent": "error",
+                "domain": "climate",
+                "response": "Você quer ligar ou desligar o ar?",
+                "text": text
+            }
+    
+        # remove palavras de ação e tipo, mantendo somente o cômodo
+        blacklist = set(ACTIONS_ON + ACTIONS_OFF + ["ar", "condicionado"])
+        target_words = [w for w in words if w not in blacklist]
+    
+        search = " ".join(target_words)
+    
+        return {
+            "intent": action,
+            "domain": "climate",
+            "search": search if search else "ar",
+            "text": text
+        }
+
 
     # ------------------ TODAS AS LUZES ------------------
     if "todas" in raw and ("luz" in raw or "luzes" in raw):

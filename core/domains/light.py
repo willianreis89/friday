@@ -60,6 +60,7 @@ def handle_single(intent: dict):
             })
 
         context.set({
+            "domain": "light",
             "action": "off",
             "candidates": candidates
         })
@@ -69,7 +70,7 @@ def handle_single(intent: dict):
             "message": f"Mais de uma luz está ligada: {nomes}. Qual luz?"
         }
 
-    # 🔹 fluxo normal (já funciona)
+    # fluxo normal (já funciona)
     from core.ha_client import find_light_entities
 
     entities = find_light_entities(search)
@@ -179,7 +180,10 @@ def handle_confirmation(intent: dict):
     if not matches:
         return {
             "message": "Não encontrei essa luz.",
-            "debug": debug
+            "debug": {
+                "intent_text": intent.get("text"),
+                "payload": payload
+            }
         }
 
     call_service(
