@@ -10,7 +10,9 @@ STOPWORDS = {
     "do", "da", "de", "dos", "das",
     "no", "na", "nos", "nas",
     "para", "pra", "pro",
-    "pelo", "pela"
+    "pelo", "pela",
+    # artigos e pronomes comuns em PT-BR
+    "a", "o", "as", "os", "um", "uma", "uns", "umas"
 }
 
 def normalize(text: str) -> str:
@@ -70,15 +72,14 @@ def parse(text: str):
 
     # ------------------ TODAS AS LUZES ------------------
     if "todas" in raw and ("luz" in raw or "luzes" in raw):
-        if any(a in raw for a in ACTIONS_ON):
+        if any(a in words for a in ACTIONS_ON):
             return {
                 "intent": "all_on",
                 "domain": "light",
                 "entities": ["light.all_light_entities"],
                 "text": text
             }
-
-        if any(a in raw for a in ACTIONS_OFF):
+        if any(a in words for a in ACTIONS_OFF):
             return {
                 "intent": "all_off",
                 "domain": "light",
@@ -89,16 +90,16 @@ def parse(text: str):
     # ------------------ MULTI ------------------
     actions_found = []
     for a in ACTIONS_ON:
-        if a in raw:
+        if a in words:
             actions_found.append("on")
     for a in ACTIONS_OFF:
-        if a in raw:
+        if a in words:
             actions_found.append("off")
 
     if (
         len(actions_found) > 1
         and any(t in raw for t in LIGHT_TYPES)
-    ) or (" e " in raw and any(a in raw for a in ACTIONS_ON + ACTIONS_OFF)):
+    ) or (" e " in raw and any(a in words for a in ACTIONS_ON + ACTIONS_OFF)):
         return {
             "intent": "multi",
             "domain": "light",
@@ -106,9 +107,9 @@ def parse(text: str):
         }
 
     # ------------------ SINGLE ------------------
-    if any(a in raw for a in ACTIONS_ON):
+    if any(a in words for a in ACTIONS_ON):
         action = "on"
-    elif any(a in raw for a in ACTIONS_OFF):
+    elif any(a in words for a in ACTIONS_OFF):
         action = "off"
     else:
         return {
