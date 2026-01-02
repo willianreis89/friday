@@ -45,6 +45,8 @@ def get_lights_on():
         e for e in get_all_lights()
         if e["state"] == "on"
         and e["entity_id"] not in IGNORED_LIGHT_ENTITIES
+        # descarta grupos (quando existir atributo entity_id)
+        and "entity_id" not in e.get("attributes", {})
     ]
 
 def find_light_entities(search: str):
