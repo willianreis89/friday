@@ -37,7 +37,10 @@ class TestCallService:
         call_service("light", "turn_on", {"entity_id": "light.sala"})
         
         call_args = mock_post.call_args
-        assert "/api/services/light/turn_on" in call_args[1]['url'] or "/api/services/light/turn_on" in call_args[0][0]
+        # Verifica se URL está nos kwargs ou args
+        url_in_kwargs = 'url' in call_args.kwargs and "/api/services/light/turn_on" in call_args.kwargs['url']
+        url_in_args = len(call_args.args) > 0 and "/api/services/light/turn_on" in call_args.args[0]
+        assert url_in_kwargs or url_in_args
     
     @patch('core.ha_client.requests.post')
     def test_call_service_timeout(self, mock_post):

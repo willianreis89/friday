@@ -108,8 +108,8 @@ class TestDispatchIntegration:
         """Limpa contexto antes de cada teste"""
         context.clear()
     
-    @patch('core.ha_client.call_service')
-    @patch('core.ha_client.get_all_states')
+    @patch('core.domains.light.call_service')
+    @patch('core.domains.light.get_all_states')
     def test_dispatch_full_flow_light(self, mock_states, mock_call):
         """Teste de fluxo completo para luz"""
         mock_states.return_value = [
