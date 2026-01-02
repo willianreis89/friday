@@ -1,0 +1,212 @@
+==============================================================
+TESTES UNITARIOS - IMPLEMENTACAO COMPLETA
+==============================================================
+
+Data: 2026-01-02
+Projeto: Friday - Assistente Virtual para Home Assistant
+
+==============================================================
+## RESUMO DA IMPLEMENTACAO
+==============================================================
+
+Total de arquivos de teste criados: 6
+Total de testes implementados: ~105+
+Cobertura esperada: > 80%
+
+==============================================================
+## ARQUIVOS CRIADOS
+==============================================================
+
+### Configuracao
+1. pytest.ini
+   - Configuracao do pytest
+   - Markers personalizados (unit, integration, slow)
+   - Opcoes de cobertura
+
+2. requirements.txt (atualizado)
+   - pytest
+   - pytest-cov
+   - pytest-mock
+   - pytest-asyncio
+
+3. .gitignore (atualizado)
+   - Arquivos de cache do pytest
+   - Relatorios de cobertura
+
+### Testes Unitarios
+1. tests/__init__.py
+   - Package de testes
+
+2. tests/test_intent_parser.py (~40 testes)
+   - TestNormalize: Normalizacao de texto
+   - TestParseLights: Parsing de comandos de luz
+   - TestParseClimate: Parsing de comandos de ar
+   - TestParseEdgeCases: Casos extremos
+
+3. tests/test_context_manager.py (~10 testes)
+   - TestContextManager: Set, clear, valid, TTL, expiracao
+
+4. tests/test_ha_client.py (~15 testes)
+   - TestCallService: Chamadas de servico com mocks
+   - TestGetAllStates: Busca de estados
+   - TestGetState: Busca de estado especifico
+
+5. tests/test_dispatcher.py (~10 testes)
+   - TestDispatch: Roteamento para dominios
+   - TestDispatchIntegration: Testes de integracao
+
+6. tests/test_light.py (~15 testes)
+   - TestNormalizeName: Normalizacao de nomes
+   - TestFindLightEntities: Busca de entidades
+   - TestHandle: Handler principal
+   - TestHandleSingle: Comandos simples
+   - TestHandleSingleMultipleEntities: Multiplas entidades
+
+7. tests/test_climate.py (~15 testes)
+   - TestMatchRoom: Identificacao de comodos
+   - TestIsGenericAr: Comandos genericos
+   - TestHandle: Handler principal
+   - TestHandleConfirmation: Confirmacoes
+
+### Scripts de Execucao
+1. run_tests.sh (Linux/Mac)
+   - Script bash para executar testes
+   - Multiplas opcoes (all, cov, fast, por modulo)
+
+2. run_tests.ps1 (Windows)
+   - Script PowerShell equivalente
+   - Mesmas funcionalidades do bash
+
+### Documentacao
+1. tests/README.txt
+   - Documentacao completa dos testes
+   - Como executar, estrutura, boas praticas
+
+2. README.md (atualizado)
+   - Secao de testes adicionada
+   - Comandos de execucao
+   - Estrutura de testes
+
+==============================================================
+## COBERTURA DE TESTES
+==============================================================
+
+Modulos Testados:
+[✓] core/intent_parser.py      - Parse e normalizacao
+[✓] core/context_manager.py    - Gerenciamento de contexto
+[✓] core/ha_client.py          - Cliente Home Assistant
+[✓] core/dispatcher.py         - Roteamento de comandos
+[✓] core/domains/light.py      - Handlers de luz
+[✓] core/domains/climate.py    - Handlers de ar
+
+Tipos de Teste:
+- Testes unitarios isolados com mocks
+- Testes de integracao entre componentes
+- Testes de casos extremos (edge cases)
+- Testes de tratamento de erros
+- Testes de timeout e excecoes
+
+==============================================================
+## COMO USAR
+==============================================================
+
+### Instalacao
+```bash
+pip install -r requirements.txt
+```
+
+### Execucao Basica
+```bash
+# Todos os testes
+pytest
+
+# Com verbose
+pytest -v
+
+# Com cobertura
+pytest --cov=core --cov=stt --cov-report=html
+```
+
+### Scripts
+```bash
+# Linux/Mac
+chmod +x run_tests.sh
+./run_tests.sh cov
+
+# Windows
+.\run_tests.ps1 cov
+```
+
+### Por Modulo
+```bash
+pytest tests/test_intent_parser.py
+pytest tests/test_light.py
+pytest tests/test_climate.py
+```
+
+### Relatorio de Cobertura
+Apos executar com --cov-report=html:
+1. Abra htmlcov/index.html no navegador
+2. Veja cobertura por arquivo
+3. Clique em arquivos para ver linhas nao cobertas
+
+==============================================================
+## TECNOLOGIAS UTILIZADAS
+==============================================================
+
+- pytest: Framework de testes
+- pytest-cov: Plugin de cobertura de codigo
+- pytest-mock: Simplifica mocking
+- unittest.mock: Mocks e patches
+- pytest-asyncio: Suporte a testes async
+
+==============================================================
+## BOAS PRATICAS IMPLEMENTADAS
+==============================================================
+
+1. Isolamento com mocks para dependencias externas
+2. Testes independentes (nao dependem de ordem)
+3. Setup/teardown com setup_method()
+4. Nomes descritivos de testes
+5. Assertions especificas e claras
+6. Docstrings explicando o que cada teste verifica
+7. Organizacao em classes por funcionalidade
+8. Cobertura de casos extremos
+9. Tratamento de erros testado
+10. Documentacao completa
+
+==============================================================
+## PROXIMOS PASSOS
+==============================================================
+
+1. Executar testes pela primeira vez:
+   pytest -v
+
+2. Verificar cobertura:
+   pytest --cov=core --cov=stt --cov-report=html
+
+3. Configurar CI/CD (opcional):
+   - GitHub Actions
+   - GitLab CI
+   - Jenkins
+
+4. Adicionar testes para novos modulos:
+   - stt/server.py (testes de API)
+   - Novos dominios
+
+5. Integrar com pre-commit hooks:
+   - Executar testes antes de commit
+   - Verificar cobertura minima
+
+==============================================================
+## METRICAS ESPERADAS
+==============================================================
+
+Total de Testes: ~105+
+Tempo de Execucao: < 5 segundos
+Cobertura de Codigo: > 80%
+Taxa de Sucesso: 100%
+
+==============================================================
+FIM DO RESUMO
+==============================================================

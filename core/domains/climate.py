@@ -1,5 +1,8 @@
-from core.ha_client import call_service, get_state
 from core.context_manager import context
+from core.ha_client import call_service, get_state
+from utils.logger import log_action, setup_logger
+
+logger = setup_logger(__name__)
 
 # ---------------- DEVICES ----------------
 
@@ -31,7 +34,9 @@ def match_room(search: str):
     for room, aliases in ROOM_ALIASES.items():
         for a in aliases:
             if a in search:
+                logger.debug(f"Comodo identificado: '{search}' -> {room}")
                 return room
+    logger.debug(f"Nenhum comodo identificado para: '{search}'")
     return None
 
 def is_generic_ar(search: str):
@@ -45,6 +50,7 @@ def is_on(entity_id: str):
 def handle(intent: dict):
     action = intent["intent"]
     search = intent.get("search", "").lower()
+    logger.info(f"Processando climate.{action} | Busca: '{search}'")
 
     room = match_room(search)
 
@@ -61,8 +67,10 @@ def handle(intent: dict):
 
         if len(ligados) == 1:
             call_service("script", ligados[0]["script"].replace("script.", ""), {})
+            log_action(logger, "climate", "off", ligados[0]["room"])
             return {"message": f"Ar do {ligados[0]['room']} desligado."}
 
+        logger.info(f"Multiplos ares ligados: {[l['room'] for l in ligados]}")
         context.set({
             "domain": "climate",
             "action": "off",
@@ -77,8 +85,10 @@ def handle(intent: dict):
         cfg = CLIMATE_DEVICES[room]
         script = cfg["power_on"] if action == "on" else cfg["power_off"]
         call_service("script", script.replace("script.", ""), {})
+        log_action(logger, "climate", action, room)
         return {"message": f"Ar do {room} {'ligado' if action == 'on' else 'desligado'}."}
 
+    logger.warning(f"Comando de ar-condicionado nao compreendido: '{search}'")
     return {"message": "Não entendi o comando de ar-condicionado."}
 
 # ---------------- CONFIRMAÇÃO ----------------

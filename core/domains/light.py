@@ -1,7 +1,11 @@
-import time
-from core.ha_client import call_service, get_all_states
-from core.context_manager import context
 import re
+import time
+
+from core.context_manager import context
+from core.ha_client import call_service, get_all_states
+from utils.logger import log_action, setup_logger
+
+logger = setup_logger(__name__)
 
 # ---------------- CONFIG ----------------
 
@@ -52,12 +56,14 @@ def find_light_entities(search: str):
         if search in name:
             matches.append(e["entity_id"])
 
+    logger.debug(f"Busca '{search}': {len(matches)} luz(es) encontrada(s)")
     return matches
 
 # ---------------- HANDLER ----------------
 
 def handle(intent: dict):
     intent_type = intent.get("intent")
+    logger.info(f"Processando light.{intent_type}")
 
     if intent_type in ("all_on", "all_off"):
         return handle_all(intent)
@@ -68,6 +74,7 @@ def handle(intent: dict):
     if "search" in intent:
         return handle_single(intent)
 
+    logger.warning(f"Intent desconhecida no dominio light: {intent_type}")
     return {"message": "Não entendi o comando."}
 
 # ---------------- SINGLE ----------------
@@ -87,6 +94,7 @@ def handle_single(intent: dict):
         if len(lights_on) == 1:
             entity = lights_on[0]["entity_id"]
             call_service("light", "turn_off", {"entity_id": entity})
+            log_action(logger, "light", "turn_off", entity)
             return {"message": "Luz desligada."}
 
         candidates = [
@@ -97,6 +105,7 @@ def handle_single(intent: dict):
             for e in lights_on
         ]
 
+        logger.info(f"Multiplas luzes ligadas: {len(candidates)} luz(es)")
         context.set({
             "domain": "light",
             "action": "off",
@@ -108,10 +117,12 @@ def handle_single(intent: dict):
 
     entities = find_light_entities(search)
     if not entities:
+        logger.warning(f"Luz nao encontrada: '{search}'")
         return {"message": "Não encontrei essa luz."}
 
     service = "turn_on" if action == "on" else "turn_off"
     call_service("light", service, {"entity_id": entities})
+    log_action(logger, "light", service, search)
 
     return {"message": f"{search} {'ligada' if action == 'on' else 'desligada'}."}
 

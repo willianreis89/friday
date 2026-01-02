@@ -1,5 +1,9 @@
 import unicodedata
 
+from utils.logger import setup_logger
+
+logger = setup_logger(__name__)
+
 # ------------------ NORMALIZAÇÃO ------------------
 
 STOPWORDS = {
@@ -19,7 +23,9 @@ def normalize(text: str) -> str:
         .lower()
 
     words = [w for w in text.split() if w not in STOPWORDS]
-    return " ".join(words)
+    normalized = " ".join(words)
+    logger.debug(f"Normalizado: '{text}' -> '{normalized}'")
+    return normalized
 
 # ------------------ VOCABULÁRIO ------------------
 

@@ -1,0 +1,7 @@
+# Home Assistant Configuration
+HA_URL=http://seu-home-assistant:8123
+HA_TOKEN=seu-token-aqui
+
+# CUDA Configuration (opcional - apenas se usar GPU para STT)
+CUDA_VISIBLE_DEVICES=0
+CUDA_DEVICE_ORDER=PCI_BUS_ID
