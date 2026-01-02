@@ -16,3 +16,9 @@ venv/
 
 # Logs
 *.log
+
+# Testes
+.pytest_cache/
+.coverage
+htmlcov/
+.testmondata

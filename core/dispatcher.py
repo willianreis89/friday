@@ -1,20 +1,30 @@
-from core.domains import light, climate
 from core.context_manager import context
+from core.domains import climate, light
+from utils.logger import setup_logger
+
+logger = setup_logger(__name__)
 
 def dispatch(intent: dict):
+    domain = intent.get("domain")
+    intent_type = intent.get("intent")
+    
     if context.valid():
         payload = context.data.get("payload", {})
-        domain = payload.get("domain")
+        ctx_domain = payload.get("domain")
+        logger.info(f"Contexto ativo: {ctx_domain} | Roteando confirmacao")
 
-        if domain == "light":
+        if ctx_domain == "light":
             return light.handle_confirmation(intent)
-        if domain == "climate":
+        if ctx_domain == "climate":
             return climate.handle_confirmation(intent)
 
-    if intent.get("domain") == "light":
+    logger.info(f"Despachando: {domain}.{intent_type}")
+    
+    if domain == "light":
         return light.handle(intent)
 
-    if intent.get("domain") == "climate":
+    if domain == "climate":
         return climate.handle(intent)
 
+    logger.warning(f"Dominio desconhecido: {domain}")
     return {"message": "Não entendi. Pode repetir?"}
