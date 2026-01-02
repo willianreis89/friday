@@ -1,9 +1,9 @@
-from core.ha_client import call_service
+from core.ha_client import call_service, get_state
 from core.context_manager import context
 
-# ---------------- CONFIGURAÇÃO ----------------
+# ---------------- DEVICES ----------------
 
-CLIMATE_ROOMS = {
+CLIMATE_DEVICES = {
     "quarto": {
         "power_on": "script.gelar_ar_lg_quarto",
         "power_off": "script.desligar_ar_lg_quarto",
@@ -16,43 +16,53 @@ CLIMATE_ROOMS = {
     }
 }
 
+# ---------------- ALIASES ----------------
+
+GENERIC_AR = {"ar", "ar condicionado", "ar-condicionado", "arcondicionado"}
+
+ROOM_ALIASES = {
+    "quarto": ["quarto", "ar quarto", "ar do quarto", "ar condicionado quarto"],
+    "closet": ["closet", "ar closet", "ar do closet", "ar condicionado closet"]
+}
+
+# ---------------- UTIL ----------------
+
+def match_room(search: str):
+    for room, aliases in ROOM_ALIASES.items():
+        for a in aliases:
+            if a in search:
+                return room
+    return None
+
+def is_generic_ar(search: str):
+    return not search or search in GENERIC_AR
+
+def is_on(entity_id: str):
+    return get_state(entity_id) == "on"
+
 # ---------------- HANDLER ----------------
 
 def handle(intent: dict):
-    action = intent.get("intent")
-    search = intent.get("search", "")
+    action = intent["intent"]
+    search = intent.get("search", "").lower()
 
-    debug = {
-        "action": action,
-        "search": search,
-        "rooms": list(CLIMATE_ROOMS.keys())
-    }
+    room = match_room(search)
 
-    # -------- DESLIGAR AR (INTELIGENTE) --------
-    if action == "off" and search == "ar":
-        ligados = []
-
-        for room, cfg in CLIMATE_ROOMS.items():
-            if is_on(cfg["state"]):
-                ligados.append({
-                    "room": room,
-                    "script": cfg["power_off"]
-                })
+    # GENÉRICO: desligar ar
+    if action == "off" and is_generic_ar(search) and not room:
+        ligados = [
+            {"room": r, "script": cfg["power_off"]}
+            for r, cfg in CLIMATE_DEVICES.items()
+            if is_on(cfg["state"])
+        ]
 
         if not ligados:
             return {"message": "Nenhum ar-condicionado está ligado."}
 
         if len(ligados) == 1:
-            call_service(
-                "script",
-                ligados[0]["script"].replace("script.", ""),
-                {}
-            )
-            return {
-                "message": f"Ar do {ligados[0]['room']} desligado."
-            }
+            call_service("script", ligados[0]["script"].replace("script.", ""), {})
+            return {"message": f"Ar do {ligados[0]['room']} desligado."}
 
-        # mais de um → confirmação
         context.set({
             "domain": "climate",
             "action": "off",
@@ -60,83 +70,37 @@ def handle(intent: dict):
         })
 
         nomes = ", ".join(l["room"] for l in ligados)
-        return {
-            "message": f"Mais de um ar está ligado: {nomes}. Qual deles?"
-        }
+        return {"message": f"Mais de um ar está ligado: {nomes}. Qual deles?"}
 
-    # -------- LIGAR AR --------
-    if action == "on" and search in CLIMATE_ROOMS:
-        script = CLIMATE_ROOMS[search]["power_on"]
-    
-        call_service(
-            "script",
-            script.replace("script.", ""),
-            {}
-        )
-    
-        return {
-            "message": f"Ar do {search} ligado."
-        }
-
-    # -------- DESLIGAR AR POR CÔMODO --------
-    if action == "off" and search in CLIMATE_ROOMS:
-        script = CLIMATE_ROOMS[search]["power_off"]
+    # COM CÔMODO
+    if room:
+        cfg = CLIMATE_DEVICES[room]
+        script = cfg["power_on"] if action == "on" else cfg["power_off"]
         call_service("script", script.replace("script.", ""), {})
-        return {
-            "message": f"Ar do {search} desligado."
-        }
+        return {"message": f"Ar do {room} {'ligado' if action == 'on' else 'desligado'}."}
 
-    return {
-        "message": "Não entendi o comando de ar-condicionado.",
-        "debug": debug
-    }
-
+    return {"message": "Não entendi o comando de ar-condicionado."}
 
 # ---------------- CONFIRMAÇÃO ----------------
 
 def handle_confirmation(intent: dict):
-    payload = context.data["payload"]
+    payload = context.data.get("payload", {})
     text = intent.get("text", "").lower()
-
-    debug = {
-        "user_text": text,
-        "payload": payload
-    }
-
     context.clear()
 
-    # desligar todos
+    if payload.get("domain") != "climate":
+        return {"message": "Confirmação inválida."}
+
+    candidates = payload.get("candidates", [])
+
     if "todos" in text:
-        for cfg in CLIMATE_ROOMS.values():
-            call_service(
-                "script",
-                cfg["power_off"].replace("script.", ""),
-                {}
-            )
+        for c in candidates:
+            call_service("script", c["script"].replace("script.", ""), {})
         return {"message": "Todos os ar-condicionados foram desligados."}
 
-    for c in payload["candidates"]:
+    for c in candidates:
         if c["room"] in text:
-            call_service(
-                "script",
-                c["script"].replace("script.", ""),
-                {}
-            )
+            call_service("script", c["script"].replace("script.", ""), {})
             return {"message": f"Ar do {c['room']} desligado."}
 
-    return {
-        "message": "Não entendi qual ar desligar.",
-        "debug": {
-            "intent_text": intent.get("text"),
-            "payload": payload
-        }
-    }
-
-# ---------------- UTIL ----------------
-
-def is_on(entity_id: str) -> bool:
-    """
-    Consulta simples via HA states (binário)
-    """
-    from core.ha_client import get_state
-    return get_state(entity_id) == "on"
+    return {"message": "Não entendi qual ar desligar."}

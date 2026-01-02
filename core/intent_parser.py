@@ -62,7 +62,6 @@ def parse(text: str):
             "text": text
         }
 
-
     # ------------------ TODAS AS LUZES ------------------
     if "todas" in raw and ("luz" in raw or "luzes" in raw):
         if any(a in raw for a in ACTIONS_ON):
