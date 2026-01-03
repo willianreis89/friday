@@ -240,6 +240,155 @@ class TestHandleSingle:
         assert "desligada" in result["message"].lower()
 
 
+class TestHandleMulti:
+    """Testes para handle_multi (múltiplos comandos combinados)"""
+    
+    def setup_method(self):
+        """Limpa contexto antes de cada teste"""
+        context.clear()
+    
+    @patch('core.domains.light.call_service')
+    @patch('core.domains.light.find_light_entities')
+    def test_handle_multi_two_on_commands(self, mock_find, mock_call):
+        """Deve processar múltiplos comandos de ligar"""
+        from core.domains.light import handle_multi
+        
+        mock_find.side_effect = [["light.sala"], ["light.quarto"]]
+        mock_call.return_value = True
+        
+        intent = {"text": "ligar luz sala e ligar luz quarto"}
+        result = handle_multi(intent)
+        
+        # Deve fazer 2 chamadas ao find_light_entities
+        assert mock_find.call_count == 2
+        # Deve fazer 2 chamadas ao call_service
+        assert mock_call.call_count == 2
+        # Resultado deve conter ambas as mensagens ligadas
+        assert result["message"].count("ligada") == 2
+    
+    @patch('core.domains.light.call_service')
+    @patch('core.domains.light.find_light_entities')
+    def test_handle_multi_three_commands(self, mock_find, mock_call):
+        """Deve processar 3 comandos combinados"""
+        from core.domains.light import handle_multi
+        
+        mock_find.side_effect = [["light.sala"], ["light.quarto"], ["light.cozinha"]]
+        mock_call.return_value = True
+        
+        intent = {"text": "ligar sala e desligar quarto e ligar cozinha"}
+        result = handle_multi(intent)
+        
+        assert mock_call.call_count == 3
+        assert "|" in result["message"]  # mensagens separadas por pipe
+
+
+class TestHandleAll:
+    """Testes para handle_all (ligar/desligar todas)"""
+    
+    def setup_method(self):
+        """Limpa contexto antes de cada teste"""
+        context.clear()
+    
+    @patch('core.domains.light.call_service')
+    def test_handle_all_on(self, mock_call):
+        """Deve ligar todas as luzes"""
+        from core.domains.light import handle_all
+        
+        mock_call.return_value = True
+        
+        intent = {"intent": "all_on"}
+        result = handle_all(intent)
+        
+        mock_call.assert_called_once_with("light", "turn_on", {"entity_id": "light.all_light_entities"})
+        assert "todas" in result["message"].lower()
+    
+    @patch('core.domains.light.call_service')
+    def test_handle_all_off(self, mock_call):
+        """Deve desligar todas as luzes"""
+        from core.domains.light import handle_all
+        
+        mock_call.return_value = True
+        
+        intent = {"intent": "all_off"}
+        result = handle_all(intent)
+        
+        mock_call.assert_called_once_with("light", "turn_off", {"entity_id": "light.all_light_entities"})
+        assert "todas" in result["message"].lower()
+
+
+class TestHandleConfirmation:
+    """Testes para handle_confirmation (confirmação de ação)"""
+    
+    def setup_method(self):
+        """Limpa contexto antes de cada teste"""
+        context.clear()
+    
+    @patch('core.domains.light.call_service')
+    def test_handle_confirmation_select_one(self, mock_call):
+        """Deve desligar apenas a luz selecionada"""
+        from core.domains.light import handle_confirmation
+        
+        mock_call.return_value = True
+        
+        context.set({
+            "domain": "light",
+            "action": "off",
+            "candidates": [
+                {"entity_id": "light.sala", "name": "sala"},
+                {"entity_id": "light.quarto", "name": "quarto"}
+            ]
+        })
+        
+        intent = {"text": "sala"}
+        result = handle_confirmation(intent)
+        
+        mock_call.assert_called_once_with("light", "turn_off", {"entity_id": "light.sala"})
+        assert "sala" in result["message"].lower()
+        assert "desligada" in result["message"].lower()
+        assert not context.valid()
+    
+    @patch('core.domains.light.call_service')
+    def test_handle_confirmation_all_lights(self, mock_call):
+        """Deve desligar todas as luzes quando user responde 'todas'"""
+        from core.domains.light import handle_confirmation
+        
+        mock_call.return_value = True
+        
+        context.set({
+            "domain": "light",
+            "action": "off",
+            "candidates": [
+                {"entity_id": "light.sala", "name": "sala"},
+                {"entity_id": "light.quarto", "name": "quarto"}
+            ]
+        })
+        
+        intent = {"text": "todas"}
+        result = handle_confirmation(intent)
+        
+        mock_call.assert_called_once_with("light", "turn_off", {"entity_id": "light.all_light_entities"})
+        assert "todas" in result["message"].lower()
+        assert not context.valid()
+    
+    def test_handle_confirmation_unrecognized(self):
+        """Deve retornar erro para resposta não reconhecida"""
+        from core.domains.light import handle_confirmation
+        
+        context.set({
+            "domain": "light",
+            "action": "off",
+            "candidates": [
+                {"entity_id": "light.sala", "name": "sala"}
+            ]
+        })
+        
+        intent = {"text": "xyz"}
+        result = handle_confirmation(intent)
+        
+        assert "encontrei" in result["message"].lower()
+        assert not context.valid()
+
+
 class TestHandleSingleMultipleEntities:
     """Testes para handle_single com multiplas entidades"""
     
