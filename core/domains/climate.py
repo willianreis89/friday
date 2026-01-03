@@ -52,6 +52,17 @@ def handle(intent: dict):
     search = intent.get("search", "").lower()
     logger.info(f"Processando climate.{action} | Busca: '{search}'")
 
+    # Ligar/desligar TODOS os ares
+    if action in ("all_on", "all_off"):
+        service_action = "on" if action == "all_on" else "off"
+        for room, cfg in CLIMATE_DEVICES.items():
+            script = cfg["power_on"] if service_action == "on" else cfg["power_off"]
+            call_service("script", script.replace("script.", ""), {})
+            log_action(logger, "climate", service_action, room)
+        
+        msg_action = "ligados" if service_action == "on" else "desligados"
+        return {"message": f"Todos os ar-condicionados foram {msg_action}."}
+
     room = match_room(search)
 
     # GENÉRICO: desligar ar

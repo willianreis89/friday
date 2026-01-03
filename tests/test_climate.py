@@ -103,6 +103,32 @@ class TestHandle:
         assert call_args[0] == "script"
         assert "desligar_ar_lg_closet" in call_args[1]
     
+    @patch('core.domains.climate.call_service')
+    def test_handle_all_on(self, mock_call):
+        """Deve ligar todos os ares-condicionados"""
+        mock_call.return_value = True
+        
+        intent = {"intent": "all_on"}
+        result = handle(intent)
+        
+        # Deve chamar call_service 2 vezes (quarto e closet)
+        assert mock_call.call_count == 2
+        assert "todos" in result["message"].lower()
+        assert "ligados" in result["message"].lower()
+    
+    @patch('core.domains.climate.call_service')
+    def test_handle_all_off(self, mock_call):
+        """Deve desligar todos os ares-condicionados"""
+        mock_call.return_value = True
+        
+        intent = {"intent": "all_off"}
+        result = handle(intent)
+        
+        # Deve chamar call_service 2 vezes (quarto e closet)
+        assert mock_call.call_count == 2
+        assert "todos" in result["message"].lower()
+        assert "desligados" in result["message"].lower()
+    
     @patch('core.domains.climate.is_on')
     def test_handle_generic_off_nenhum_ligado(self, mock_is_on):
         """'desligar ar' sem nenhum ar ligado"""
@@ -226,3 +252,31 @@ class TestHandleConfirmation:
         
         assert "message" in result
         assert not context.valid()  # contexto limpo mesmo com erro
+    
+    @patch('core.domains.climate.call_service')
+    def test_handle_confirmation_specific_room_from_multiple(self, mock_call):
+        """Deve desligar apenas o ar especificado quando ha multiplos"""
+        mock_call.return_value = True
+        
+        # Simula contexto de confirmacao com 2 ares ligados
+        context.set({
+            "domain": "climate",
+            "action": "off",
+            "candidates": [
+                {"room": "quarto", "script": "script.desligar_ar_lg_quarto"},
+                {"room": "closet", "script": "script.desligar_ar_lg_closet"}
+            ]
+        })
+        
+        from core.domains.climate import handle_confirmation
+        
+        # Usuario responde "closet"
+        intent = {"text": "closet"}
+        result = handle_confirmation(intent)
+        
+        # Deve chamar call_service apenas 1 vez com o script correto
+        mock_call.assert_called_once_with("script", "desligar_ar_lg_closet", {})
+        assert "closet" in result["message"].lower()
+        assert "desligado" in result["message"].lower()
+        # Contexto deve ser limpo
+        assert not context.valid()

@@ -44,20 +44,43 @@ def parse(text: str):
     # ------------------ CLIMATE ------------------    
     words = raw.split()
     
-    if "ar" in words or "ar-condicionado" in raw or "ar condicionado" in raw:
-        if any(a in words for a in ACTIONS_ON):
-            action = "on"
-        elif any(a in words for a in ACTIONS_OFF):
-            action = "off"
-        else:
+    if "ar" in words or "ar-condicionado" in raw or "ar condicionado" in raw or "arcondicionados" in raw or "ar-condicionados" in raw:
+        # Detecta ação
+        action_on = any(a in words for a in ACTIONS_ON)
+        action_off = any(a in words for a in ACTIONS_OFF)
+        
+        if not action_on and not action_off:
             return {
                 "intent": "error",
                 "domain": "climate",
                 "response": "Você quer ligar ou desligar o ar?",
                 "text": text
             }
-    
-        # remove palavras de ação e tipo, mantendo somente o cômodo
+        
+        action = "on" if action_on else "off"
+        
+        # Detecta plural no TEXTO ORIGINAL (antes de normalizar, para pegar "os")
+        text_lower = text.lower()
+        is_plural = any(term in text_lower for term in [
+            "todos", 
+            "os dois", 
+            "dois ar", 
+            "arcondicionados",
+            "ar-condicionados",
+            "todos ar",
+            "todos ar-",
+            "todos arcondicionado"
+        ])
+        
+        # Se plural, retorna all_on/all_off
+        if is_plural:
+            return {
+                "intent": "all_on" if action == "on" else "all_off",
+                "domain": "climate",
+                "text": text
+            }
+        
+        # Singular: remove palavras de ação e tipo, mantendo somente o cômodo
         blacklist = set(ACTIONS_ON + ACTIONS_OFF + ["ar", "condicionado"])
         target_words = [w for w in words if w not in blacklist]
     

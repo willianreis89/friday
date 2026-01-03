@@ -1,0 +1,31 @@
+======================================================================
+VERSAO: 260102_22
+======================================================================
+Assistente Virtual (FastAPI): FRIDAY
+STT: Whisper Fast (GPU)
+Language Model: LLAMA
+Autor: Will Reis
+
+Python Version: 3.11.14
+Status: Desenvolvimento Ativo
+
+Domínios Implementados:
+  - Light (100% cobertura)
+  - Climate (99% cobertura)
+  - Sensor (planejado)
+  - Media (planejado)
+
+Pipeline:
+  STT → Intent Parser → Dispatcher → Domínios → Home Assistant API
+
+Cobertura de Testes: 83%
+Total de Testes: 93
+
+Arquitetura:
+  - Determinismo > IA
+  - Domínios isolados
+  - Contexto técnico com TTL curto
+  - Home Assistant como backend
+  - Debug sempre possível
+
+======================================================================

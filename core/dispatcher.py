@@ -1,8 +1,12 @@
 from core.context_manager import context
 from core.domains import climate, light
 from utils.logger import setup_logger
+from utils.version import print_version_banner
 
 logger = setup_logger(__name__)
+
+# Exibe banner de versão na inicialização
+print_version_banner()
 
 def dispatch(intent: dict):
     domain = intent.get("domain")

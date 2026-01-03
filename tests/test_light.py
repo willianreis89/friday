@@ -219,6 +219,25 @@ class TestHandleSingle:
         assert context.valid()
         assert "mais de uma" in result["message"].lower()
         assert "qual" in result["message"].lower()
+    
+    @patch('core.domains.light.call_service')
+    @patch('core.domains.light.get_lights_on')
+    def test_handle_single_generic_off_ignores_groups_and_helpers(self, mock_lights_on, mock_call):
+        """Grupos e helpers com entity_id nos atributos devem ser ignorados ao desligar luz"""
+        # Simula um grupo/helper (com entity_id nos atributos) e uma luz real
+        # O grupo deve ser filtrado por get_lights_on, retornando apenas a luz real
+        mock_lights_on.return_value = [
+            {"entity_id": "light.sala", "state": "on"}
+        ]
+        mock_call.return_value = True
+        
+        intent = {"intent": "off", "search": "luz"}
+        result = handle_single(intent)
+        
+        # Deve desligar apenas a luz real, sem criar contexto
+        mock_call.assert_called_once_with("light", "turn_off", {"entity_id": "light.sala"})
+        assert not context.valid()
+        assert "desligada" in result["message"].lower()
 
 
 class TestHandleSingleMultipleEntities:

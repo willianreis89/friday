@@ -125,6 +125,30 @@ class TestParseClimate:
         assert result["intent"] == "off"
         assert result["domain"] == "climate"
     
+    def test_parse_ar_plural_on(self):
+        """Deve detectar plural e retornar all_on para clima"""
+        result = parse("ligar os dois ar")
+        assert result["intent"] == "all_on"
+        assert result["domain"] == "climate"
+        
+        result = parse("ligar os dois ar-condicionados")
+        assert result["intent"] == "all_on"
+        assert result["domain"] == "climate"
+        
+        result = parse("ligar arcondicionados")
+        assert result["intent"] == "all_on"
+        assert result["domain"] == "climate"
+    
+    def test_parse_ar_plural_off(self):
+        """Deve detectar plural e retornar all_off para clima"""
+        result = parse("desligar os dois ar")
+        assert result["intent"] == "all_off"
+        assert result["domain"] == "climate"
+        
+        result = parse("desligar todos ar-condicionados")
+        assert result["intent"] == "all_off"
+        assert result["domain"] == "climate"
+    
     def test_parse_ar_sem_acao(self):
         """Deve retornar erro se ar sem acao definida"""
         result = parse("ar do quarto")
