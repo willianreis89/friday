@@ -51,6 +51,33 @@ def extract_room_from_climate(raw: str, text_lower: str) -> str | None:
         return "closet"
     return None
 
+def extract_room_for_query(text_lower: str) -> str | None:
+    """Extrai cômodo de uma query de sensor."""
+    if "quarto" in text_lower:
+        return "quarto"
+    if "closet" in text_lower:
+        return "closet"
+    if "externa" in text_lower or "sacada" in text_lower:
+        return "externa"
+    return None
+
+def extract_rooms_for_comparison(text_lower: str) -> list[str]:
+    """Extrai múltiplos cômodos de uma comparação."""
+    rooms = []
+    room_keywords = {
+        "quarto": ["quarto"],
+        "closet": ["closet"],
+        "externa": ["externa", "sacada"]
+    }
+    
+    for room_name, keywords in room_keywords.items():
+        for keyword in keywords:
+            if keyword in text_lower:
+                rooms.append(room_name)
+                break
+    
+    return rooms
+
 # ------------------ VOCABULÁRIO ------------------
 
 ACTIONS_ON = ["ligar", "acender"]
@@ -67,13 +94,99 @@ CLIMATE_FEATURES = {
     "display": ["tela", "display", "scoreboard"]
 }
 
+# Sensor query patterns
+SENSOR_QUERY_PATTERNS = {
+    "temperature": ["temperatura", "graus", "quente", "frio", "como está"],
+    "humidity": ["umidade", "úmidade"],
+    "light": ["luminosidade", "claridade"],
+    "motion": ["movimento", "detectou"]
+}
+
+# Sensor comparison patterns (para comparações entre ambientes)
+SENSOR_COMPARISONS = {
+    "which_highest": ["qual", "mais quente", "mais frio", "mais alta", "mais baixa"],
+    "which_lowest": ["onde está mais frio", "qual está mais frio"],
+    "compare_two": ["ou", "comparação"]
+}
+
 # ------------------ PARSER ------------------
 
 def parse(text: str):
     raw = normalize(text)
+    text_lower = text.lower()
+
+    # ---- SENSOR QUERIES (HIGH PRIORITY - check before climate)
+    # Check if this is a query/question with sensor keywords
+    # Pergunta típica: "Qual a temperatura do quarto?" "Onde está mais quente?"
+    query_keywords = ["qual", "quanto", "como está", "quantos", "onde"]
+    is_asking = any(keyword in text_lower for keyword in query_keywords)
+    
+    # If it's a question (qual, quanto, etc) and has no climate action keywords (ligar, desligar, aumentar, diminuir, setar)
+    # then treat as sensor query
+    if is_asking:
+        has_climate_action = any(
+            action in text_lower 
+            for action in ACTIONS_ON + ACTIONS_OFF + ["aumentar", "diminuir", "subir", "reduzir", "setar"]
+        )
+        
+        # If no climate action intent, check for sensor keywords
+        if not has_climate_action:
+            is_sensor_query = any(
+                pattern in text_lower 
+                for pattern_type in SENSOR_QUERY_PATTERNS.values()
+                for pattern in pattern_type
+            )
+            
+            if is_sensor_query:
+                # Detecta tipo de sensor
+                sensor_type = None
+                if any(t in text_lower for t in SENSOR_QUERY_PATTERNS["temperature"]):
+                    sensor_type = "temperature"
+                elif any(t in text_lower for t in SENSOR_QUERY_PATTERNS["humidity"]):
+                    sensor_type = "humidity"
+                elif any(t in text_lower for t in SENSOR_QUERY_PATTERNS["light"]):
+                    sensor_type = "light"
+                elif any(t in text_lower for t in SENSOR_QUERY_PATTERNS["motion"]):
+                    sensor_type = "motion"
+                
+                if sensor_type:
+                    # Detecta comparação (múltiplos ambientes)
+                    has_comparison = " ou " in text_lower or "vs" in text_lower or "mais" in text_lower
+                    
+                    if has_comparison:
+                        # Extrai dois ambientes para comparar
+                        rooms = extract_rooms_for_comparison(text_lower)
+                        if len(rooms) >= 2:
+                            return {
+                                "intent": "compare_sensors",
+                                "domain": "sensor",
+                                "sensor_type": sensor_type,
+                                "rooms": rooms,
+                                "text": text
+                            }
+                        elif "mais" in text_lower and ("quente" in text_lower or "frio" in text_lower or "alta" in text_lower or "baixa" in text_lower):
+                            # Query como "qual ambiente está mais quente" - precisa comparar todos
+                            return {
+                                "intent": "compare_all_sensors",
+                                "domain": "sensor",
+                                "sensor_type": sensor_type,
+                                "comparison_type": "highest" if ("quente" in text_lower or "alta" in text_lower) else "lowest",
+                                "text": text
+                            }
+                    
+                    # Query simples de um sensor
+                    room = extract_room_for_query(text_lower)
+                    
+                    return {
+                        "intent": "query_sensor",
+                        "domain": "sensor",
+                        "sensor_type": sensor_type,
+                        "room": room,
+                        "text": text
+                    }
+
 
     # ---- VERIFICA FEATURES DE CLIMATE (antes de checar por "ar")
-    text_lower = text.lower()
     
     # Checagem rápida: se tem algum feature de climate, trata como climate
     has_climate_feature = any(
@@ -261,56 +374,9 @@ def parse(text: str):
             "search": search if search else "ar",
             "text": text
         }
-
-    # ------------------ TODAS AS LUZES ------------------
-    if "todas" in raw and ("luz" in raw or "luzes" in raw):
-        if any(a in words for a in ACTIONS_ON):
-            return {
-                "intent": "all_on",
-                "domain": "light",
-                "entities": ["light.all_light_entities"],
-                "text": text
-            }
-        if any(a in words for a in ACTIONS_OFF):
-            return {
-                "intent": "all_off",
-                "domain": "light",
-                "entities": ["light.all_light_entities"],
-                "text": text
-            }
-
-    # ------------------ MULTI ------------------
-    actions_found = []
-    for a in ACTIONS_ON:
-        if a in words:
-            actions_found.append("on")
-    for a in ACTIONS_OFF:
-        if a in words:
-            actions_found.append("off")
-
-    if (
-        len(actions_found) > 1
-        and any(t in raw for t in LIGHT_TYPES)
-    ) or (" e " in raw and any(a in words for a in ACTIONS_ON + ACTIONS_OFF)):
-        return {
-            "intent": "multi",
-            "domain": "light",
-            "text": text
-        }
-
-    # ------------------ SINGLE ------------------
-    if any(a in words for a in ACTIONS_ON):
-        action = "on"
-    elif any(a in words for a in ACTIONS_OFF):
-        action = "off"
-    else:
-        return {
-            "intent": "error",
-            "domain": "light",
-            "response": "Não entendi.",
-            "text": text
-        }
-
+    # ============================================================
+    # LIGHT PARSING
+    # ============================================================
     light_type = None
     for t in LIGHT_TYPES:
         if t in raw:
@@ -325,6 +391,40 @@ def parse(text: str):
             "text": text
         }
 
+    # Detecta ação (ligar/desligar)
+    words = raw.split()
+    action_on = any(a in words for a in ACTIONS_ON)
+    action_off = any(a in words for a in ACTIONS_OFF)
+    
+    # Detecta múltiplos comandos com "e"
+    if " e " in raw and (action_on or action_off):
+        return {
+            "intent": "multi",
+            "domain": "light",
+            "text": text
+        }
+    
+    if not action_on and not action_off:
+        return {
+            "intent": "error",
+            "domain": "light",
+            "response": "Você quer ligar ou desligar a luz?",
+            "text": text
+        }
+    
+    action = "on" if action_on else "off"
+    
+    # Detecta se é plural (todas as luzes)
+    is_plural = any(term in text_lower for term in ["todas", "os", "as"])
+    
+    if is_plural:
+        return {
+            "intent": "all_" + action,
+            "domain": "light",
+            "type": light_type,
+            "text": text
+        }
+    
     target = raw
     for w in ACTIONS_ON + ACTIONS_OFF + LIGHT_TYPES:
         target = target.replace(w, "")

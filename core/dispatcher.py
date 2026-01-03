@@ -1,5 +1,5 @@
 from core.context_manager import context
-from core.domains import climate, light
+from core.domains import climate, light, sensor
 from utils.logger import setup_logger
 from utils.version import print_version_banner
 
@@ -30,5 +30,9 @@ def dispatch(intent: dict):
     if domain == "climate":
         return climate.handle(intent)
 
+    if domain == "sensor":
+        return sensor.handle(intent)
+
     logger.warning(f"Dominio desconhecido: {domain}")
     return {"message": "Não entendi. Pode repetir?"}
+

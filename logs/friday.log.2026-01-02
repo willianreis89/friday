@@ -1,0 +1,1259 @@
+2026-01-02 19:26:20 | INFO     | core.domains.climate | Processando climate.on | Busca: 'ar quarto'
+2026-01-02 19:26:20 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 19:26:20 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar closet'
+2026-01-02 19:26:20 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 19:26:20 | INFO     | core.domains.climate | Processando climate.on | Busca: 'quarto'
+2026-01-02 19:26:20 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 19:26:20 | INFO     | core.domains.climate | Processando climate.off | Busca: 'closet'
+2026-01-02 19:26:20 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 19:26:20 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:26:20 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:26:20 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 19:26:20 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:26:20 | INFO     | core.domains.climate | Multiplos ares ligados: ['quarto', 'closet']
+2026-01-02 19:26:20 | INFO     | core.domains.climate | Processando climate.off | Busca: 'sala'
+2026-01-02 19:26:20 | WARNING  | core.domains.climate | Comando de ar-condicionado nao compreendido: 'sala'
+2026-01-02 19:26:21 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 19:26:21 | INFO     | core.dispatcher      | Despachando: climate.on
+2026-01-02 19:26:21 | INFO     | core.dispatcher      | Despachando: unknown.something
+2026-01-02 19:26:21 | WARNING  | core.dispatcher      | Dominio desconhecido: unknown
+2026-01-02 19:26:21 | INFO     | core.dispatcher      | Despachando: None.on
+2026-01-02 19:26:21 | WARNING  | core.dispatcher      | Dominio desconhecido: None
+2026-01-02 19:26:21 | INFO     | core.dispatcher      | Contexto ativo: light | Roteando confirmacao
+2026-01-02 19:26:21 | INFO     | core.dispatcher      | Contexto ativo: climate | Roteando confirmacao
+2026-01-02 19:26:22 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 19:26:22 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 19:26:22 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 19:26:22 | ERROR    | core.ha_client       | API [GET] None/api/states ** ERRO: Invalid URL 'None/api/states': No scheme supplied. Perhaps you meant https://None/api/states?
+2026-01-02 19:26:22 | INFO     | core.ha_client       | API [POST] None/api/services/light/turn_on -> Status 200
+2026-01-02 19:26:22 | INFO     | core.ha_client       | API [POST] None/api/services/light/turn_on -> Status <Mock name='post().status_code' id='4452319696'>
+2026-01-02 19:26:22 | ERROR    | core.ha_client       | API [POST] None/api/services/light/turn_on ** ERRO: Timeout (5s)
+2026-01-02 19:26:22 | ERROR    | core.ha_client       | API [POST] None/api/services/light/turn_on ** ERRO: Connection error
+2026-01-02 19:26:22 | ERROR    | core.ha_client       | API [POST] None/api/services/light/turn_on ** ERRO: 404
+2026-01-02 19:26:22 | INFO     | core.ha_client       | API [GET] None/api/states -> Status <Mock name='get().status_code' id='4452445776'>
+2026-01-02 19:26:22 | INFO     | core.ha_client       | API [GET] None/api/states -> Status <Mock name='get().status_code' id='4452204112'>
+2026-01-02 19:26:22 | INFO     | core.ha_client       | API [GET] None/api/states -> Status None
+2026-01-02 19:26:22 | ERROR    | core.ha_client       | API [GET] None/api/states ** ERRO: Network error
+2026-01-02 19:26:22 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 19:26:22 | INFO     | core.domains.light   | Processando light.all_on
+2026-01-02 19:26:22 | INFO     | core.domains.light   | Processando light.all_off
+2026-01-02 19:26:22 | INFO     | core.domains.light   | Processando light.multi
+2026-01-02 19:26:22 | INFO     | core.domains.light   | Processando light.unknown
+2026-01-02 19:26:22 | WARNING  | core.domains.light   | Intent desconhecida no dominio light: unknown
+2026-01-02 19:26:22 | INFO     | core.domains.light   | ACAO [light] turn_on -> sala
+2026-01-02 19:26:22 | INFO     | core.domains.light   | ACAO [light] turn_off -> quarto
+2026-01-02 19:26:22 | WARNING  | core.domains.light   | Luz nao encontrada: 'inexistente'
+2026-01-02 19:26:22 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 19:26:22 | INFO     | core.domains.light   | Multiplas luzes ligadas: 2 luz(es)
+2026-01-02 19:26:22 | INFO     | core.domains.light   | ACAO [light] turn_on -> led
+2026-01-02 19:27:16 | INFO     | core.domains.climate | Processando climate.on | Busca: 'ar quarto'
+2026-01-02 19:27:16 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 19:27:16 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar closet'
+2026-01-02 19:27:16 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 19:27:16 | INFO     | core.domains.climate | Processando climate.on | Busca: 'quarto'
+2026-01-02 19:27:16 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 19:27:16 | INFO     | core.domains.climate | Processando climate.off | Busca: 'closet'
+2026-01-02 19:27:16 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 19:27:16 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:27:16 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:27:16 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 19:27:16 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:27:16 | INFO     | core.domains.climate | Multiplos ares ligados: ['quarto', 'closet']
+2026-01-02 19:27:16 | INFO     | core.domains.climate | Processando climate.off | Busca: 'sala'
+2026-01-02 19:27:16 | WARNING  | core.domains.climate | Comando de ar-condicionado nao compreendido: 'sala'
+2026-01-02 19:27:17 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 19:27:17 | INFO     | core.dispatcher      | Despachando: climate.on
+2026-01-02 19:27:17 | INFO     | core.dispatcher      | Despachando: unknown.something
+2026-01-02 19:27:17 | WARNING  | core.dispatcher      | Dominio desconhecido: unknown
+2026-01-02 19:27:17 | INFO     | core.dispatcher      | Despachando: None.on
+2026-01-02 19:27:17 | WARNING  | core.dispatcher      | Dominio desconhecido: None
+2026-01-02 19:27:17 | INFO     | core.dispatcher      | Contexto ativo: light | Roteando confirmacao
+2026-01-02 19:27:17 | INFO     | core.dispatcher      | Contexto ativo: climate | Roteando confirmacao
+2026-01-02 19:27:17 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 19:27:17 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 19:27:17 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 19:27:17 | ERROR    | core.ha_client       | API [GET] None/api/states ** ERRO: Invalid URL 'None/api/states': No scheme supplied. Perhaps you meant https://None/api/states?
+2026-01-02 19:27:17 | INFO     | core.ha_client       | API [POST] None/api/services/light/turn_on -> Status 200
+2026-01-02 19:27:17 | INFO     | core.ha_client       | API [POST] None/api/services/light/turn_on -> Status <Mock name='post().status_code' id='4458872464'>
+2026-01-02 19:27:17 | ERROR    | core.ha_client       | API [POST] None/api/services/light/turn_on ** ERRO: Timeout (5s)
+2026-01-02 19:27:17 | ERROR    | core.ha_client       | API [POST] None/api/services/light/turn_on ** ERRO: Connection error
+2026-01-02 19:27:17 | ERROR    | core.ha_client       | API [POST] None/api/services/light/turn_on ** ERRO: 404
+2026-01-02 19:27:17 | INFO     | core.ha_client       | API [GET] None/api/states -> Status <Mock name='get().status_code' id='4458755408'>
+2026-01-02 19:27:17 | INFO     | core.ha_client       | API [GET] None/api/states -> Status <Mock name='get().status_code' id='4458747792'>
+2026-01-02 19:27:17 | INFO     | core.ha_client       | API [GET] None/api/states -> Status None
+2026-01-02 19:27:17 | ERROR    | core.ha_client       | API [GET] None/api/states ** ERRO: Network error
+2026-01-02 19:27:17 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 19:27:17 | INFO     | core.domains.light   | Processando light.all_on
+2026-01-02 19:27:17 | INFO     | core.domains.light   | Processando light.all_off
+2026-01-02 19:27:17 | INFO     | core.domains.light   | Processando light.multi
+2026-01-02 19:27:17 | INFO     | core.domains.light   | Processando light.unknown
+2026-01-02 19:27:17 | WARNING  | core.domains.light   | Intent desconhecida no dominio light: unknown
+2026-01-02 19:27:17 | INFO     | core.domains.light   | ACAO [light] turn_on -> sala
+2026-01-02 19:27:17 | INFO     | core.domains.light   | ACAO [light] turn_off -> quarto
+2026-01-02 19:27:17 | WARNING  | core.domains.light   | Luz nao encontrada: 'inexistente'
+2026-01-02 19:27:17 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 19:27:17 | INFO     | core.domains.light   | Multiplas luzes ligadas: 2 luz(es)
+2026-01-02 19:27:17 | INFO     | core.domains.light   | ACAO [light] turn_on -> led
+2026-01-02 19:29:46 | INFO     | core.domains.climate | Processando climate.on | Busca: 'ar quarto'
+2026-01-02 19:29:46 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 19:29:46 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar closet'
+2026-01-02 19:29:46 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 19:29:46 | INFO     | core.domains.climate | Processando climate.on | Busca: 'quarto'
+2026-01-02 19:29:46 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 19:29:46 | INFO     | core.domains.climate | Processando climate.off | Busca: 'closet'
+2026-01-02 19:29:46 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 19:29:46 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:29:46 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:29:46 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 19:29:46 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:29:46 | INFO     | core.domains.climate | Multiplos ares ligados: ['quarto', 'closet']
+2026-01-02 19:29:46 | INFO     | core.domains.climate | Processando climate.off | Busca: 'sala'
+2026-01-02 19:29:46 | WARNING  | core.domains.climate | Comando de ar-condicionado nao compreendido: 'sala'
+2026-01-02 19:29:47 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 19:29:47 | INFO     | core.dispatcher      | Despachando: climate.on
+2026-01-02 19:29:47 | INFO     | core.dispatcher      | Despachando: unknown.something
+2026-01-02 19:29:47 | WARNING  | core.dispatcher      | Dominio desconhecido: unknown
+2026-01-02 19:29:47 | INFO     | core.dispatcher      | Despachando: None.on
+2026-01-02 19:29:47 | WARNING  | core.dispatcher      | Dominio desconhecido: None
+2026-01-02 19:29:47 | INFO     | core.dispatcher      | Contexto ativo: light | Roteando confirmacao
+2026-01-02 19:29:47 | INFO     | core.dispatcher      | Contexto ativo: climate | Roteando confirmacao
+2026-01-02 19:29:47 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 19:29:47 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 19:29:47 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 19:29:47 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status 200
+2026-01-02 19:29:48 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status 200
+2026-01-02 19:29:48 | INFO     | core.domains.light   | ACAO [light] turn_on -> luz sala
+2026-01-02 19:29:48 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status 200
+2026-01-02 19:29:48 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status <Mock name='post().status_code' id='4492786192'>
+2026-01-02 19:29:48 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Timeout (5s)
+2026-01-02 19:29:48 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Connection error
+2026-01-02 19:29:48 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: 404
+2026-01-02 19:29:48 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4492749584'>
+2026-01-02 19:29:48 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4494082832'>
+2026-01-02 19:29:48 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status None
+2026-01-02 19:29:48 | ERROR    | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states ** ERRO: Network error
+2026-01-02 19:29:48 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 19:29:48 | INFO     | core.domains.light   | Processando light.all_on
+2026-01-02 19:29:48 | INFO     | core.domains.light   | Processando light.all_off
+2026-01-02 19:29:48 | INFO     | core.domains.light   | Processando light.multi
+2026-01-02 19:29:48 | INFO     | core.domains.light   | Processando light.unknown
+2026-01-02 19:29:48 | WARNING  | core.domains.light   | Intent desconhecida no dominio light: unknown
+2026-01-02 19:29:48 | INFO     | core.domains.light   | ACAO [light] turn_on -> sala
+2026-01-02 19:29:48 | INFO     | core.domains.light   | ACAO [light] turn_off -> quarto
+2026-01-02 19:29:48 | WARNING  | core.domains.light   | Luz nao encontrada: 'inexistente'
+2026-01-02 19:29:48 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 19:29:48 | INFO     | core.domains.light   | Multiplas luzes ligadas: 2 luz(es)
+2026-01-02 19:29:48 | INFO     | core.domains.light   | ACAO [light] turn_on -> led
+2026-01-02 19:35:25 | INFO     | core.domains.climate | Processando climate.on | Busca: 'ar quarto'
+2026-01-02 19:35:25 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 19:35:25 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar closet'
+2026-01-02 19:35:25 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 19:35:25 | INFO     | core.domains.climate | Processando climate.on | Busca: 'quarto'
+2026-01-02 19:35:25 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 19:35:25 | INFO     | core.domains.climate | Processando climate.off | Busca: 'closet'
+2026-01-02 19:35:25 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 19:35:25 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:35:25 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:35:25 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 19:35:25 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:35:25 | INFO     | core.domains.climate | Multiplos ares ligados: ['quarto', 'closet']
+2026-01-02 19:35:25 | INFO     | core.domains.climate | Processando climate.off | Busca: 'sala'
+2026-01-02 19:35:25 | WARNING  | core.domains.climate | Comando de ar-condicionado nao compreendido: 'sala'
+2026-01-02 19:35:26 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 19:35:26 | INFO     | core.dispatcher      | Despachando: climate.on
+2026-01-02 19:35:26 | INFO     | core.dispatcher      | Despachando: unknown.something
+2026-01-02 19:35:26 | WARNING  | core.dispatcher      | Dominio desconhecido: unknown
+2026-01-02 19:35:26 | INFO     | core.dispatcher      | Despachando: None.on
+2026-01-02 19:35:26 | WARNING  | core.dispatcher      | Dominio desconhecido: None
+2026-01-02 19:35:26 | INFO     | core.dispatcher      | Contexto ativo: light | Roteando confirmacao
+2026-01-02 19:35:26 | INFO     | core.dispatcher      | Contexto ativo: climate | Roteando confirmacao
+2026-01-02 19:35:26 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 19:35:26 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 19:35:26 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 19:35:26 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status 200
+2026-01-02 19:35:27 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status 200
+2026-01-02 19:35:27 | INFO     | core.domains.light   | ACAO [light] turn_on -> luz sala
+2026-01-02 19:35:27 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status 200
+2026-01-02 19:35:27 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status <Mock name='post().status_code' id='4488466832'>
+2026-01-02 19:35:27 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Timeout (5s)
+2026-01-02 19:35:27 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Connection error
+2026-01-02 19:35:27 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: 404
+2026-01-02 19:35:27 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4490554768'>
+2026-01-02 19:35:27 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4489412432'>
+2026-01-02 19:35:27 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status None
+2026-01-02 19:35:27 | ERROR    | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states ** ERRO: Network error
+2026-01-02 19:35:27 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 19:35:27 | INFO     | core.domains.light   | Processando light.all_on
+2026-01-02 19:35:27 | INFO     | core.domains.light   | Processando light.all_off
+2026-01-02 19:35:27 | INFO     | core.domains.light   | Processando light.multi
+2026-01-02 19:35:27 | INFO     | core.domains.light   | Processando light.unknown
+2026-01-02 19:35:27 | WARNING  | core.domains.light   | Intent desconhecida no dominio light: unknown
+2026-01-02 19:35:27 | INFO     | core.domains.light   | ACAO [light] turn_on -> sala
+2026-01-02 19:35:27 | INFO     | core.domains.light   | ACAO [light] turn_off -> quarto
+2026-01-02 19:35:27 | WARNING  | core.domains.light   | Luz nao encontrada: 'inexistente'
+2026-01-02 19:35:27 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 19:35:27 | INFO     | core.domains.light   | Multiplas luzes ligadas: 2 luz(es)
+2026-01-02 19:35:27 | INFO     | core.domains.light   | ACAO [light] turn_on -> led
+2026-01-02 19:39:17 | INFO     | core.domains.climate | Processando climate.on | Busca: 'ar quarto'
+2026-01-02 19:39:17 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 19:39:17 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar closet'
+2026-01-02 19:39:17 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 19:39:17 | INFO     | core.domains.climate | Processando climate.on | Busca: 'quarto'
+2026-01-02 19:39:17 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 19:39:17 | INFO     | core.domains.climate | Processando climate.off | Busca: 'closet'
+2026-01-02 19:39:17 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 19:39:17 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:39:17 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:39:17 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 19:39:17 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:39:17 | INFO     | core.domains.climate | Multiplos ares ligados: ['quarto', 'closet']
+2026-01-02 19:39:17 | INFO     | core.domains.climate | Processando climate.off | Busca: 'sala'
+2026-01-02 19:39:17 | WARNING  | core.domains.climate | Comando de ar-condicionado nao compreendido: 'sala'
+2026-01-02 19:39:18 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 19:39:18 | INFO     | core.dispatcher      | Despachando: climate.on
+2026-01-02 19:39:18 | INFO     | core.dispatcher      | Despachando: unknown.something
+2026-01-02 19:39:18 | WARNING  | core.dispatcher      | Dominio desconhecido: unknown
+2026-01-02 19:39:18 | INFO     | core.dispatcher      | Despachando: None.on
+2026-01-02 19:39:18 | WARNING  | core.dispatcher      | Dominio desconhecido: None
+2026-01-02 19:39:18 | INFO     | core.dispatcher      | Contexto ativo: light | Roteando confirmacao
+2026-01-02 19:39:18 | INFO     | core.dispatcher      | Contexto ativo: climate | Roteando confirmacao
+2026-01-02 19:39:18 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 19:39:18 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 19:39:18 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 19:39:18 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status 200
+2026-01-02 19:39:19 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status 200
+2026-01-02 19:39:19 | INFO     | core.domains.light   | ACAO [light] turn_on -> luz sala
+2026-01-02 19:39:19 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status 200
+2026-01-02 19:39:19 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status <Mock name='post().status_code' id='4415130832'>
+2026-01-02 19:39:19 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Timeout (5s)
+2026-01-02 19:39:19 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Connection error
+2026-01-02 19:39:19 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: 404
+2026-01-02 19:39:19 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4416453648'>
+2026-01-02 19:39:19 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4415282384'>
+2026-01-02 19:39:19 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status None
+2026-01-02 19:39:19 | ERROR    | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states ** ERRO: Network error
+2026-01-02 19:39:19 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 19:39:19 | INFO     | core.domains.light   | Processando light.all_on
+2026-01-02 19:39:19 | INFO     | core.domains.light   | Processando light.all_off
+2026-01-02 19:39:19 | INFO     | core.domains.light   | Processando light.multi
+2026-01-02 19:39:19 | INFO     | core.domains.light   | Processando light.unknown
+2026-01-02 19:39:19 | WARNING  | core.domains.light   | Intent desconhecida no dominio light: unknown
+2026-01-02 19:39:19 | INFO     | core.domains.light   | ACAO [light] turn_on -> sala
+2026-01-02 19:39:19 | INFO     | core.domains.light   | ACAO [light] turn_off -> quarto
+2026-01-02 19:39:19 | WARNING  | core.domains.light   | Luz nao encontrada: 'inexistente'
+2026-01-02 19:39:19 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 19:39:19 | INFO     | core.domains.light   | Multiplas luzes ligadas: 2 luz(es)
+2026-01-02 19:39:19 | INFO     | core.domains.light   | ACAO [light] turn_on -> led
+2026-01-02 19:41:49 | INFO     | core.domains.climate | Processando climate.on | Busca: 'ar quarto'
+2026-01-02 19:41:49 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 19:41:49 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar closet'
+2026-01-02 19:41:49 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 19:41:49 | INFO     | core.domains.climate | Processando climate.on | Busca: 'quarto'
+2026-01-02 19:41:49 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 19:41:49 | INFO     | core.domains.climate | Processando climate.off | Busca: 'closet'
+2026-01-02 19:41:49 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 19:41:49 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:41:49 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:41:49 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 19:41:49 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:41:49 | INFO     | core.domains.climate | Multiplos ares ligados: ['quarto', 'closet']
+2026-01-02 19:41:49 | INFO     | core.domains.climate | Processando climate.off | Busca: 'sala'
+2026-01-02 19:41:49 | WARNING  | core.domains.climate | Comando de ar-condicionado nao compreendido: 'sala'
+2026-01-02 19:41:50 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 19:41:50 | INFO     | core.dispatcher      | Despachando: climate.on
+2026-01-02 19:41:50 | INFO     | core.dispatcher      | Despachando: unknown.something
+2026-01-02 19:41:50 | WARNING  | core.dispatcher      | Dominio desconhecido: unknown
+2026-01-02 19:41:50 | INFO     | core.dispatcher      | Despachando: None.on
+2026-01-02 19:41:50 | WARNING  | core.dispatcher      | Dominio desconhecido: None
+2026-01-02 19:41:50 | INFO     | core.dispatcher      | Contexto ativo: light | Roteando confirmacao
+2026-01-02 19:41:50 | INFO     | core.dispatcher      | Contexto ativo: climate | Roteando confirmacao
+2026-01-02 19:41:50 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 19:41:50 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 19:41:50 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 19:41:50 | INFO     | core.domains.light   | ACAO [light] turn_on -> luz sala
+2026-01-02 19:41:50 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status 200
+2026-01-02 19:41:50 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status <Mock name='post().status_code' id='4496681488'>
+2026-01-02 19:41:50 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Timeout (5s)
+2026-01-02 19:41:50 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Connection error
+2026-01-02 19:41:50 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: 404
+2026-01-02 19:41:50 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4496690128'>
+2026-01-02 19:41:50 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4496633616'>
+2026-01-02 19:41:50 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status None
+2026-01-02 19:41:50 | ERROR    | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states ** ERRO: Network error
+2026-01-02 19:41:50 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 19:41:50 | INFO     | core.domains.light   | Processando light.all_on
+2026-01-02 19:41:50 | INFO     | core.domains.light   | Processando light.all_off
+2026-01-02 19:41:50 | INFO     | core.domains.light   | Processando light.multi
+2026-01-02 19:41:50 | INFO     | core.domains.light   | Processando light.unknown
+2026-01-02 19:41:50 | WARNING  | core.domains.light   | Intent desconhecida no dominio light: unknown
+2026-01-02 19:41:50 | INFO     | core.domains.light   | ACAO [light] turn_on -> sala
+2026-01-02 19:41:50 | INFO     | core.domains.light   | ACAO [light] turn_off -> quarto
+2026-01-02 19:41:50 | WARNING  | core.domains.light   | Luz nao encontrada: 'inexistente'
+2026-01-02 19:41:50 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 19:41:50 | INFO     | core.domains.light   | Multiplas luzes ligadas: 2 luz(es)
+2026-01-02 19:41:50 | INFO     | core.domains.light   | ACAO [light] turn_on -> led
+2026-01-02 19:47:01 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 19:47:15 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 19:47:15 | INFO     | core.domains.light   | Processando light.all_on
+2026-01-02 19:47:15 | INFO     | core.domains.light   | Processando light.all_off
+2026-01-02 19:47:15 | INFO     | core.domains.light   | Processando light.multi
+2026-01-02 19:47:15 | INFO     | core.domains.light   | Processando light.unknown
+2026-01-02 19:47:15 | WARNING  | core.domains.light   | Intent desconhecida no dominio light: unknown
+2026-01-02 19:47:15 | INFO     | core.domains.light   | ACAO [light] turn_on -> sala
+2026-01-02 19:47:15 | INFO     | core.domains.light   | ACAO [light] turn_off -> quarto
+2026-01-02 19:47:15 | WARNING  | core.domains.light   | Luz nao encontrada: 'inexistente'
+2026-01-02 19:47:15 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 19:47:15 | INFO     | core.domains.light   | Multiplas luzes ligadas: 2 luz(es)
+2026-01-02 19:47:15 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 19:47:15 | INFO     | core.domains.light   | ACAO [light] turn_on -> led
+2026-01-02 19:47:43 | INFO     | core.domains.climate | Processando climate.on | Busca: 'ar quarto'
+2026-01-02 19:47:43 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 19:47:43 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar closet'
+2026-01-02 19:47:43 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 19:47:43 | INFO     | core.domains.climate | Processando climate.on | Busca: 'quarto'
+2026-01-02 19:47:43 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 19:47:43 | INFO     | core.domains.climate | Processando climate.off | Busca: 'closet'
+2026-01-02 19:47:43 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 19:47:43 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:47:43 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:47:43 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 19:47:43 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:47:43 | INFO     | core.domains.climate | Multiplos ares ligados: ['quarto', 'closet']
+2026-01-02 19:47:43 | INFO     | core.domains.climate | Processando climate.off | Busca: 'sala'
+2026-01-02 19:47:43 | WARNING  | core.domains.climate | Comando de ar-condicionado nao compreendido: 'sala'
+2026-01-02 19:47:44 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 19:47:44 | INFO     | core.dispatcher      | Despachando: climate.on
+2026-01-02 19:47:44 | INFO     | core.dispatcher      | Despachando: unknown.something
+2026-01-02 19:47:44 | WARNING  | core.dispatcher      | Dominio desconhecido: unknown
+2026-01-02 19:47:44 | INFO     | core.dispatcher      | Despachando: None.on
+2026-01-02 19:47:44 | WARNING  | core.dispatcher      | Dominio desconhecido: None
+2026-01-02 19:47:44 | INFO     | core.dispatcher      | Contexto ativo: light | Roteando confirmacao
+2026-01-02 19:47:44 | INFO     | core.dispatcher      | Contexto ativo: climate | Roteando confirmacao
+2026-01-02 19:47:45 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 19:47:45 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 19:47:45 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 19:47:45 | INFO     | core.domains.light   | ACAO [light] turn_on -> luz sala
+2026-01-02 19:47:45 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status 200
+2026-01-02 19:47:45 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status <Mock name='post().status_code' id='4418040464'>
+2026-01-02 19:47:45 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Timeout (5s)
+2026-01-02 19:47:45 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Connection error
+2026-01-02 19:47:45 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: 404
+2026-01-02 19:47:45 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4418065616'>
+2026-01-02 19:47:45 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4417109008'>
+2026-01-02 19:47:45 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status None
+2026-01-02 19:47:45 | ERROR    | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states ** ERRO: Network error
+2026-01-02 19:47:45 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 19:47:45 | INFO     | core.domains.light   | Processando light.all_on
+2026-01-02 19:47:45 | INFO     | core.domains.light   | Processando light.all_off
+2026-01-02 19:47:45 | INFO     | core.domains.light   | Processando light.multi
+2026-01-02 19:47:45 | INFO     | core.domains.light   | Processando light.unknown
+2026-01-02 19:47:45 | WARNING  | core.domains.light   | Intent desconhecida no dominio light: unknown
+2026-01-02 19:47:45 | INFO     | core.domains.light   | ACAO [light] turn_on -> sala
+2026-01-02 19:47:45 | INFO     | core.domains.light   | ACAO [light] turn_off -> quarto
+2026-01-02 19:47:45 | WARNING  | core.domains.light   | Luz nao encontrada: 'inexistente'
+2026-01-02 19:47:45 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 19:47:45 | INFO     | core.domains.light   | Multiplas luzes ligadas: 2 luz(es)
+2026-01-02 19:47:45 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 19:47:45 | INFO     | core.domains.light   | ACAO [light] turn_on -> led
+2026-01-02 19:59:56 | INFO     | core.domains.climate | Processando climate.on | Busca: 'ar quarto'
+2026-01-02 19:59:56 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 19:59:56 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar closet'
+2026-01-02 19:59:56 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 19:59:56 | INFO     | core.domains.climate | Processando climate.on | Busca: 'quarto'
+2026-01-02 19:59:56 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 19:59:56 | INFO     | core.domains.climate | Processando climate.off | Busca: 'closet'
+2026-01-02 19:59:56 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 19:59:56 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:59:56 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:59:56 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 19:59:56 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 19:59:56 | INFO     | core.domains.climate | Multiplos ares ligados: ['quarto', 'closet']
+2026-01-02 19:59:56 | INFO     | core.domains.climate | Processando climate.off | Busca: 'sala'
+2026-01-02 19:59:56 | WARNING  | core.domains.climate | Comando de ar-condicionado nao compreendido: 'sala'
+2026-01-02 20:00:03 | INFO     | core.domains.climate | Processando climate.on | Busca: 'ar quarto'
+2026-01-02 20:00:03 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 20:00:03 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar closet'
+2026-01-02 20:00:03 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 20:00:03 | INFO     | core.domains.climate | Processando climate.on | Busca: 'quarto'
+2026-01-02 20:00:03 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 20:00:03 | INFO     | core.domains.climate | Processando climate.off | Busca: 'closet'
+2026-01-02 20:00:03 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 20:00:03 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 20:00:03 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 20:00:03 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 20:00:03 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 20:00:03 | INFO     | core.domains.climate | Multiplos ares ligados: ['quarto', 'closet']
+2026-01-02 20:00:03 | INFO     | core.domains.climate | Processando climate.off | Busca: 'sala'
+2026-01-02 20:00:03 | WARNING  | core.domains.climate | Comando de ar-condicionado nao compreendido: 'sala'
+2026-01-02 20:00:05 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 20:00:05 | INFO     | core.dispatcher      | Despachando: climate.on
+2026-01-02 20:00:05 | INFO     | core.dispatcher      | Despachando: unknown.something
+2026-01-02 20:00:05 | WARNING  | core.dispatcher      | Dominio desconhecido: unknown
+2026-01-02 20:00:05 | INFO     | core.dispatcher      | Despachando: None.on
+2026-01-02 20:00:05 | WARNING  | core.dispatcher      | Dominio desconhecido: None
+2026-01-02 20:00:05 | INFO     | core.dispatcher      | Contexto ativo: light | Roteando confirmacao
+2026-01-02 20:00:05 | INFO     | core.dispatcher      | Contexto ativo: climate | Roteando confirmacao
+2026-01-02 20:00:05 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 20:00:05 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 20:00:05 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 20:00:05 | INFO     | core.domains.light   | ACAO [light] turn_on -> luz sala
+2026-01-02 20:00:05 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status 200
+2026-01-02 20:00:05 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status <Mock name='post().status_code' id='4491498832'>
+2026-01-02 20:00:05 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Timeout (5s)
+2026-01-02 20:00:05 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Connection error
+2026-01-02 20:00:05 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: 404
+2026-01-02 20:00:05 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4491508944'>
+2026-01-02 20:00:05 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4491654992'>
+2026-01-02 20:00:05 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status None
+2026-01-02 20:00:05 | ERROR    | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states ** ERRO: Network error
+2026-01-02 20:00:05 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 20:00:05 | INFO     | core.domains.light   | Processando light.all_on
+2026-01-02 20:00:05 | INFO     | core.domains.light   | Processando light.all_off
+2026-01-02 20:00:05 | INFO     | core.domains.light   | Processando light.multi
+2026-01-02 20:00:05 | INFO     | core.domains.light   | Processando light.unknown
+2026-01-02 20:00:05 | WARNING  | core.domains.light   | Intent desconhecida no dominio light: unknown
+2026-01-02 20:00:05 | INFO     | core.domains.light   | ACAO [light] turn_on -> sala
+2026-01-02 20:00:05 | INFO     | core.domains.light   | ACAO [light] turn_off -> quarto
+2026-01-02 20:00:05 | WARNING  | core.domains.light   | Luz nao encontrada: 'inexistente'
+2026-01-02 20:00:05 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 20:00:05 | INFO     | core.domains.light   | Multiplas luzes ligadas: 2 luz(es)
+2026-01-02 20:00:05 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 20:00:05 | INFO     | core.domains.light   | ACAO [light] turn_on -> led
+2026-01-02 20:05:51 | INFO     | core.domains.climate | Processando climate.all_on | Busca: ''
+2026-01-02 20:05:51 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 20:05:51 | INFO     | core.domains.climate | ACAO [climate] on -> closet
+2026-01-02 20:05:51 | INFO     | core.domains.climate | Processando climate.all_off | Busca: ''
+2026-01-02 20:05:51 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 20:05:51 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 20:05:58 | INFO     | core.domains.climate | Processando climate.on | Busca: 'ar quarto'
+2026-01-02 20:05:58 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 20:05:58 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar closet'
+2026-01-02 20:05:58 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 20:05:58 | INFO     | core.domains.climate | Processando climate.on | Busca: 'quarto'
+2026-01-02 20:05:58 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 20:05:58 | INFO     | core.domains.climate | Processando climate.off | Busca: 'closet'
+2026-01-02 20:05:58 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 20:05:58 | INFO     | core.domains.climate | Processando climate.all_on | Busca: ''
+2026-01-02 20:05:58 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 20:05:58 | INFO     | core.domains.climate | ACAO [climate] on -> closet
+2026-01-02 20:05:58 | INFO     | core.domains.climate | Processando climate.all_off | Busca: ''
+2026-01-02 20:05:58 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 20:05:58 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 20:05:58 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 20:05:58 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 20:05:58 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 20:05:58 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 20:05:58 | INFO     | core.domains.climate | Multiplos ares ligados: ['quarto', 'closet']
+2026-01-02 20:05:58 | INFO     | core.domains.climate | Processando climate.off | Busca: 'sala'
+2026-01-02 20:05:58 | WARNING  | core.domains.climate | Comando de ar-condicionado nao compreendido: 'sala'
+2026-01-02 20:05:59 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 20:05:59 | INFO     | core.dispatcher      | Despachando: climate.on
+2026-01-02 20:05:59 | INFO     | core.dispatcher      | Despachando: unknown.something
+2026-01-02 20:05:59 | WARNING  | core.dispatcher      | Dominio desconhecido: unknown
+2026-01-02 20:05:59 | INFO     | core.dispatcher      | Despachando: None.on
+2026-01-02 20:05:59 | WARNING  | core.dispatcher      | Dominio desconhecido: None
+2026-01-02 20:05:59 | INFO     | core.dispatcher      | Contexto ativo: light | Roteando confirmacao
+2026-01-02 20:05:59 | INFO     | core.dispatcher      | Contexto ativo: climate | Roteando confirmacao
+2026-01-02 20:05:59 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 20:05:59 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 20:05:59 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 20:05:59 | INFO     | core.domains.light   | ACAO [light] turn_on -> luz sala
+2026-01-02 20:05:59 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status 200
+2026-01-02 20:05:59 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status <Mock name='post().status_code' id='4429469136'>
+2026-01-02 20:05:59 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Timeout (5s)
+2026-01-02 20:05:59 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Connection error
+2026-01-02 20:05:59 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: 404
+2026-01-02 20:05:59 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4429426832'>
+2026-01-02 20:05:59 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4429524624'>
+2026-01-02 20:05:59 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status None
+2026-01-02 20:05:59 | ERROR    | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states ** ERRO: Network error
+2026-01-02 20:05:59 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 20:05:59 | INFO     | core.domains.light   | Processando light.all_on
+2026-01-02 20:05:59 | INFO     | core.domains.light   | Processando light.all_off
+2026-01-02 20:05:59 | INFO     | core.domains.light   | Processando light.multi
+2026-01-02 20:05:59 | INFO     | core.domains.light   | Processando light.unknown
+2026-01-02 20:05:59 | WARNING  | core.domains.light   | Intent desconhecida no dominio light: unknown
+2026-01-02 20:05:59 | INFO     | core.domains.light   | ACAO [light] turn_on -> sala
+2026-01-02 20:05:59 | INFO     | core.domains.light   | ACAO [light] turn_off -> quarto
+2026-01-02 20:05:59 | WARNING  | core.domains.light   | Luz nao encontrada: 'inexistente'
+2026-01-02 20:05:59 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 20:05:59 | INFO     | core.domains.light   | Multiplas luzes ligadas: 2 luz(es)
+2026-01-02 20:05:59 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 20:05:59 | INFO     | core.domains.light   | ACAO [light] turn_on -> led
+2026-01-02 20:08:34 | INFO     | core.domains.climate | Processando climate.on | Busca: 'ar quarto'
+2026-01-02 20:08:34 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 20:08:34 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar closet'
+2026-01-02 20:08:34 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 20:08:34 | INFO     | core.domains.climate | Processando climate.on | Busca: 'quarto'
+2026-01-02 20:08:34 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 20:08:34 | INFO     | core.domains.climate | Processando climate.off | Busca: 'closet'
+2026-01-02 20:08:34 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 20:08:34 | INFO     | core.domains.climate | Processando climate.all_on | Busca: ''
+2026-01-02 20:08:34 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 20:08:34 | INFO     | core.domains.climate | ACAO [climate] on -> closet
+2026-01-02 20:08:34 | INFO     | core.domains.climate | Processando climate.all_off | Busca: ''
+2026-01-02 20:08:34 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 20:08:34 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 20:08:34 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 20:08:34 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 20:08:34 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 20:08:34 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 20:08:34 | INFO     | core.domains.climate | Multiplos ares ligados: ['quarto', 'closet']
+2026-01-02 20:08:34 | INFO     | core.domains.climate | Processando climate.off | Busca: 'sala'
+2026-01-02 20:08:34 | WARNING  | core.domains.climate | Comando de ar-condicionado nao compreendido: 'sala'
+2026-01-02 20:08:35 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 20:08:35 | INFO     | core.dispatcher      | Despachando: climate.on
+2026-01-02 20:08:35 | INFO     | core.dispatcher      | Despachando: unknown.something
+2026-01-02 20:08:35 | WARNING  | core.dispatcher      | Dominio desconhecido: unknown
+2026-01-02 20:08:35 | INFO     | core.dispatcher      | Despachando: None.on
+2026-01-02 20:08:35 | WARNING  | core.dispatcher      | Dominio desconhecido: None
+2026-01-02 20:08:35 | INFO     | core.dispatcher      | Contexto ativo: light | Roteando confirmacao
+2026-01-02 20:08:35 | INFO     | core.dispatcher      | Contexto ativo: climate | Roteando confirmacao
+2026-01-02 20:08:35 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 20:08:35 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 20:08:35 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 20:08:35 | INFO     | core.domains.light   | ACAO [light] turn_on -> luz sala
+2026-01-02 20:08:35 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status 200
+2026-01-02 20:08:35 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status <Mock name='post().status_code' id='4460901264'>
+2026-01-02 20:08:35 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Timeout (5s)
+2026-01-02 20:08:35 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Connection error
+2026-01-02 20:08:35 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: 404
+2026-01-02 20:08:35 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4461041616'>
+2026-01-02 20:08:35 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4461108816'>
+2026-01-02 20:08:35 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status None
+2026-01-02 20:08:35 | ERROR    | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states ** ERRO: Network error
+2026-01-02 20:08:35 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 20:08:35 | INFO     | core.domains.light   | Processando light.all_on
+2026-01-02 20:08:35 | INFO     | core.domains.light   | Processando light.all_off
+2026-01-02 20:08:35 | INFO     | core.domains.light   | Processando light.multi
+2026-01-02 20:08:35 | INFO     | core.domains.light   | Processando light.unknown
+2026-01-02 20:08:35 | WARNING  | core.domains.light   | Intent desconhecida no dominio light: unknown
+2026-01-02 20:08:35 | INFO     | core.domains.light   | ACAO [light] turn_on -> sala
+2026-01-02 20:08:35 | INFO     | core.domains.light   | ACAO [light] turn_off -> quarto
+2026-01-02 20:08:35 | WARNING  | core.domains.light   | Luz nao encontrada: 'inexistente'
+2026-01-02 20:08:35 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 20:08:35 | INFO     | core.domains.light   | Multiplas luzes ligadas: 2 luz(es)
+2026-01-02 20:08:35 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 20:08:35 | INFO     | core.domains.light   | ACAO [light] turn_on -> led
+2026-01-02 22:50:06 | INFO     | friday.startup       | 
+======================================================================
+VERSAO: 260102_22
+======================================================================
+Assistente Virtual (FastAPI): FRIDAY
+STT: Whisper Fast (GPU)
+Language Model: LLAMA
+Autor: Will Reis
+
+Python Version: 3.11.14
+Status: Desenvolvimento Ativo
+
+Domínios Implementados:
+  - Light (100% cobertura)
+  - Climate (99% cobertura)
+  - Sensor (planejado)
+  - Media (planejado)
+
+Pipeline:
+  STT → Intent Parser → Dispatcher → Domínios → Home Assistant API
+
+Cobertura de Testes: 83%
+Total de Testes: 93
+
+Arquitetura:
+  - Determinismo > IA
+  - Domínios isolados
+  - Contexto técnico com TTL curto
+  - Home Assistant como backend
+  - Debug sempre possível
+
+======================================================================
+
+
+2026-01-02 22:50:06 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 22:50:10 | INFO     | friday.startup       | 
+======================================================================
+VERSAO: 260102_22
+======================================================================
+Assistente Virtual (FastAPI): FRIDAY
+STT: Whisper Fast (GPU)
+Language Model: LLAMA
+Autor: Will Reis
+
+Python Version: 3.11.14
+Status: Desenvolvimento Ativo
+
+Domínios Implementados:
+  - Light (100% cobertura)
+  - Climate (99% cobertura)
+  - Sensor (planejado)
+  - Media (planejado)
+
+Pipeline:
+  STT → Intent Parser → Dispatcher → Domínios → Home Assistant API
+
+Cobertura de Testes: 83%
+Total de Testes: 93
+
+Arquitetura:
+  - Determinismo > IA
+  - Domínios isolados
+  - Contexto técnico com TTL curto
+  - Home Assistant como backend
+  - Debug sempre possível
+
+======================================================================
+
+
+2026-01-02 22:50:10 | INFO     | core.domains.climate | Processando climate.on | Busca: 'ar quarto'
+2026-01-02 22:50:10 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 22:50:10 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar closet'
+2026-01-02 22:50:10 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 22:50:10 | INFO     | core.domains.climate | Processando climate.on | Busca: 'quarto'
+2026-01-02 22:50:10 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 22:50:10 | INFO     | core.domains.climate | Processando climate.off | Busca: 'closet'
+2026-01-02 22:50:10 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 22:50:10 | INFO     | core.domains.climate | Processando climate.all_on | Busca: ''
+2026-01-02 22:50:10 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 22:50:10 | INFO     | core.domains.climate | ACAO [climate] on -> closet
+2026-01-02 22:50:10 | INFO     | core.domains.climate | Processando climate.all_off | Busca: ''
+2026-01-02 22:50:10 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 22:50:10 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 22:50:10 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 22:50:10 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 22:50:10 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 22:50:10 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 22:50:10 | INFO     | core.domains.climate | Multiplos ares ligados: ['quarto', 'closet']
+2026-01-02 22:50:10 | INFO     | core.domains.climate | Processando climate.off | Busca: 'sala'
+2026-01-02 22:50:10 | WARNING  | core.domains.climate | Comando de ar-condicionado nao compreendido: 'sala'
+2026-01-02 22:50:11 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 22:50:11 | INFO     | core.dispatcher      | Despachando: climate.on
+2026-01-02 22:50:11 | INFO     | core.dispatcher      | Despachando: unknown.something
+2026-01-02 22:50:11 | WARNING  | core.dispatcher      | Dominio desconhecido: unknown
+2026-01-02 22:50:11 | INFO     | core.dispatcher      | Despachando: None.on
+2026-01-02 22:50:11 | WARNING  | core.dispatcher      | Dominio desconhecido: None
+2026-01-02 22:50:11 | INFO     | core.dispatcher      | Contexto ativo: light | Roteando confirmacao
+2026-01-02 22:50:11 | INFO     | core.dispatcher      | Contexto ativo: climate | Roteando confirmacao
+2026-01-02 22:50:11 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 22:50:11 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 22:50:11 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 22:50:11 | INFO     | core.domains.light   | ACAO [light] turn_on -> luz sala
+2026-01-02 22:50:11 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status 200
+2026-01-02 22:50:11 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status <Mock name='post().status_code' id='4425898768'>
+2026-01-02 22:50:11 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Timeout (5s)
+2026-01-02 22:50:11 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Connection error
+2026-01-02 22:50:11 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: 404
+2026-01-02 22:50:11 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4426066256'>
+2026-01-02 22:50:11 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4425902736'>
+2026-01-02 22:50:11 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status None
+2026-01-02 22:50:11 | ERROR    | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states ** ERRO: Network error
+2026-01-02 22:50:11 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 22:50:11 | INFO     | core.domains.light   | Processando light.all_on
+2026-01-02 22:50:11 | INFO     | core.domains.light   | Processando light.all_off
+2026-01-02 22:50:11 | INFO     | core.domains.light   | Processando light.multi
+2026-01-02 22:50:11 | INFO     | core.domains.light   | Processando light.unknown
+2026-01-02 22:50:11 | WARNING  | core.domains.light   | Intent desconhecida no dominio light: unknown
+2026-01-02 22:50:11 | INFO     | core.domains.light   | ACAO [light] turn_on -> sala
+2026-01-02 22:50:11 | INFO     | core.domains.light   | ACAO [light] turn_off -> quarto
+2026-01-02 22:50:11 | WARNING  | core.domains.light   | Luz nao encontrada: 'inexistente'
+2026-01-02 22:50:11 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 22:50:11 | INFO     | core.domains.light   | Multiplas luzes ligadas: 2 luz(es)
+2026-01-02 22:50:11 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 22:50:11 | INFO     | core.domains.light   | ACAO [light] turn_on -> led
+2026-01-02 22:53:16 | INFO     | friday.startup       | 
+======================================================================
+VERSAO: 260102_22
+======================================================================
+Assistente Virtual (FastAPI): FRIDAY
+STT: Whisper Fast (GPU)
+Language Model: LLAMA
+Autor: Will Reis
+
+Python Version: 3.11.14
+Status: Desenvolvimento Ativo
+
+Domínios Implementados:
+  - Light (100% cobertura)
+  - Climate (99% cobertura)
+  - Sensor (planejado)
+  - Media (planejado)
+
+Pipeline:
+  STT → Intent Parser → Dispatcher → Domínios → Home Assistant API
+
+Cobertura de Testes: 83%
+Total de Testes: 93
+
+Arquitetura:
+  - Determinismo > IA
+  - Domínios isolados
+  - Contexto técnico com TTL curto
+  - Home Assistant como backend
+  - Debug sempre possível
+
+======================================================================
+
+
+2026-01-02 22:53:16 | INFO     | core.domains.climate | Processando climate.on | Busca: 'ar quarto'
+2026-01-02 22:53:16 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 22:53:16 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar closet'
+2026-01-02 22:53:16 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 22:53:16 | INFO     | core.domains.climate | Processando climate.on | Busca: 'quarto'
+2026-01-02 22:53:16 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 22:53:16 | INFO     | core.domains.climate | Processando climate.off | Busca: 'closet'
+2026-01-02 22:53:16 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 22:53:16 | INFO     | core.domains.climate | Processando climate.all_on | Busca: ''
+2026-01-02 22:53:16 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 22:53:16 | INFO     | core.domains.climate | ACAO [climate] on -> closet
+2026-01-02 22:53:16 | INFO     | core.domains.climate | Processando climate.all_off | Busca: ''
+2026-01-02 22:53:16 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 22:53:16 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 22:53:16 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 22:53:16 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 22:53:16 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 22:53:16 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 22:53:16 | INFO     | core.domains.climate | Multiplos ares ligados: ['quarto', 'closet']
+2026-01-02 22:53:16 | INFO     | core.domains.climate | Processando climate.off | Busca: 'sala'
+2026-01-02 22:53:16 | WARNING  | core.domains.climate | Comando de ar-condicionado nao compreendido: 'sala'
+2026-01-02 22:53:18 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 22:53:18 | INFO     | core.dispatcher      | Despachando: climate.on
+2026-01-02 22:53:18 | INFO     | core.dispatcher      | Despachando: unknown.something
+2026-01-02 22:53:18 | WARNING  | core.dispatcher      | Dominio desconhecido: unknown
+2026-01-02 22:53:18 | INFO     | core.dispatcher      | Despachando: None.on
+2026-01-02 22:53:18 | WARNING  | core.dispatcher      | Dominio desconhecido: None
+2026-01-02 22:53:18 | INFO     | core.dispatcher      | Contexto ativo: light | Roteando confirmacao
+2026-01-02 22:53:18 | INFO     | core.dispatcher      | Contexto ativo: climate | Roteando confirmacao
+2026-01-02 22:53:18 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 22:53:18 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 22:53:18 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 22:53:18 | INFO     | core.domains.light   | ACAO [light] turn_on -> luz sala
+2026-01-02 22:53:18 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status 200
+2026-01-02 22:53:18 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status <Mock name='post().status_code' id='4461635024'>
+2026-01-02 22:53:18 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Timeout (5s)
+2026-01-02 22:53:18 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Connection error
+2026-01-02 22:53:18 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: 404
+2026-01-02 22:53:18 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4461909584'>
+2026-01-02 22:53:18 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4461934544'>
+2026-01-02 22:53:18 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status None
+2026-01-02 22:53:18 | ERROR    | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states ** ERRO: Network error
+2026-01-02 22:53:18 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 22:53:18 | INFO     | core.domains.light   | Processando light.all_on
+2026-01-02 22:53:18 | INFO     | core.domains.light   | Processando light.all_off
+2026-01-02 22:53:18 | INFO     | core.domains.light   | Processando light.multi
+2026-01-02 22:53:18 | INFO     | core.domains.light   | Processando light.unknown
+2026-01-02 22:53:18 | WARNING  | core.domains.light   | Intent desconhecida no dominio light: unknown
+2026-01-02 22:53:18 | INFO     | core.domains.light   | ACAO [light] turn_on -> sala
+2026-01-02 22:53:18 | INFO     | core.domains.light   | ACAO [light] turn_off -> quarto
+2026-01-02 22:53:18 | WARNING  | core.domains.light   | Luz nao encontrada: 'inexistente'
+2026-01-02 22:53:18 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 22:53:18 | INFO     | core.domains.light   | Multiplas luzes ligadas: 2 luz(es)
+2026-01-02 22:53:18 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 22:53:18 | INFO     | core.domains.light   | ACAO [light] turn_on -> led
+2026-01-02 22:57:51 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 22:57:51 | INFO     | core.domains.light   | Processando light.all_on
+2026-01-02 22:57:51 | INFO     | core.domains.light   | Processando light.all_off
+2026-01-02 22:57:51 | INFO     | core.domains.light   | Processando light.multi
+2026-01-02 22:57:51 | INFO     | core.domains.light   | Processando light.unknown
+2026-01-02 22:57:51 | WARNING  | core.domains.light   | Intent desconhecida no dominio light: unknown
+2026-01-02 22:57:51 | INFO     | core.domains.light   | ACAO [light] turn_on -> sala
+2026-01-02 22:57:51 | INFO     | core.domains.light   | ACAO [light] turn_off -> quarto
+2026-01-02 22:57:51 | WARNING  | core.domains.light   | Luz nao encontrada: 'inexistente'
+2026-01-02 22:57:51 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 22:57:51 | INFO     | core.domains.light   | Multiplas luzes ligadas: 2 luz(es)
+2026-01-02 22:57:51 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 22:57:51 | INFO     | core.domains.light   | ACAO [light] turn_on -> luz da sala
+2026-01-02 22:57:51 | INFO     | core.domains.light   | ACAO [light] turn_on -> luz des do quarto
+2026-01-02 22:57:52 | INFO     | core.domains.light   | ACAO [light] turn_on -> led sala
+2026-01-02 22:57:52 | INFO     | core.domains.light   | ACAO [light] turn_on -> led des quarto
+2026-01-02 22:57:53 | INFO     | core.domains.light   | ACAO [light] turn_on -> led cozinha
+2026-01-02 22:57:53 | INFO     | core.domains.light   | ACAO [light] turn_on -> led
+2026-01-02 22:58:02 | INFO     | core.domains.light   | ACAO [light] turn_on -> luz sala
+2026-01-02 22:58:02 | INFO     | core.domains.light   | ACAO [light] turn_on -> luz des quarto
+2026-01-02 22:58:12 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 22:58:12 | INFO     | core.domains.light   | Processando light.all_on
+2026-01-02 22:58:12 | INFO     | core.domains.light   | Processando light.all_off
+2026-01-02 22:58:12 | INFO     | core.domains.light   | Processando light.multi
+2026-01-02 22:58:12 | INFO     | core.domains.light   | Processando light.unknown
+2026-01-02 22:58:12 | WARNING  | core.domains.light   | Intent desconhecida no dominio light: unknown
+2026-01-02 22:58:12 | INFO     | core.domains.light   | ACAO [light] turn_on -> sala
+2026-01-02 22:58:12 | INFO     | core.domains.light   | ACAO [light] turn_off -> quarto
+2026-01-02 22:58:12 | WARNING  | core.domains.light   | Luz nao encontrada: 'inexistente'
+2026-01-02 22:58:12 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 22:58:12 | INFO     | core.domains.light   | Multiplas luzes ligadas: 2 luz(es)
+2026-01-02 22:58:12 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 22:58:12 | INFO     | core.domains.light   | ACAO [light] turn_on -> luz sala
+2026-01-02 22:58:12 | INFO     | core.domains.light   | ACAO [light] turn_on -> luz quarto
+2026-01-02 22:58:13 | INFO     | core.domains.light   | ACAO [light] turn_on -> led sala
+2026-01-02 22:58:13 | INFO     | core.domains.light   | ACAO [light] turn_on -> led des quarto
+2026-01-02 22:58:14 | INFO     | core.domains.light   | ACAO [light] turn_on -> led cozinha
+2026-01-02 22:58:14 | INFO     | core.domains.light   | ACAO [light] turn_on -> led
+2026-01-02 22:58:17 | INFO     | friday.startup       | 
+======================================================================
+VERSAO: 260102_22
+======================================================================
+Assistente Virtual (FastAPI): FRIDAY
+STT: Whisper Fast (GPU)
+Language Model: LLAMA
+Autor: Will Reis
+
+Python Version: 3.11.14
+Status: Desenvolvimento Ativo
+
+Domínios Implementados:
+  - Light (100% cobertura)
+  - Climate (99% cobertura)
+  - Sensor (planejado)
+  - Media (planejado)
+
+Pipeline:
+  STT → Intent Parser → Dispatcher → Domínios → Home Assistant API
+
+Cobertura de Testes: 83%
+Total de Testes: 93
+
+Arquitetura:
+  - Determinismo > IA
+  - Domínios isolados
+  - Contexto técnico com TTL curto
+  - Home Assistant como backend
+  - Debug sempre possível
+
+======================================================================
+
+
+2026-01-02 22:58:17 | INFO     | core.domains.climate | Processando climate.on | Busca: 'ar quarto'
+2026-01-02 22:58:17 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 22:58:17 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar closet'
+2026-01-02 22:58:17 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 22:58:17 | INFO     | core.domains.climate | Processando climate.on | Busca: 'quarto'
+2026-01-02 22:58:17 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 22:58:17 | INFO     | core.domains.climate | Processando climate.off | Busca: 'closet'
+2026-01-02 22:58:17 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 22:58:17 | INFO     | core.domains.climate | Processando climate.all_on | Busca: ''
+2026-01-02 22:58:17 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 22:58:17 | INFO     | core.domains.climate | ACAO [climate] on -> closet
+2026-01-02 22:58:17 | INFO     | core.domains.climate | Processando climate.all_off | Busca: ''
+2026-01-02 22:58:17 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 22:58:17 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 22:58:17 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 22:58:17 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 22:58:17 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 22:58:17 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 22:58:17 | INFO     | core.domains.climate | Multiplos ares ligados: ['quarto', 'closet']
+2026-01-02 22:58:17 | INFO     | core.domains.climate | Processando climate.off | Busca: 'sala'
+2026-01-02 22:58:17 | WARNING  | core.domains.climate | Comando de ar-condicionado nao compreendido: 'sala'
+2026-01-02 22:58:19 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 22:58:19 | INFO     | core.dispatcher      | Despachando: climate.on
+2026-01-02 22:58:19 | INFO     | core.dispatcher      | Despachando: unknown.something
+2026-01-02 22:58:19 | WARNING  | core.dispatcher      | Dominio desconhecido: unknown
+2026-01-02 22:58:19 | INFO     | core.dispatcher      | Despachando: None.on
+2026-01-02 22:58:19 | WARNING  | core.dispatcher      | Dominio desconhecido: None
+2026-01-02 22:58:19 | INFO     | core.dispatcher      | Contexto ativo: light | Roteando confirmacao
+2026-01-02 22:58:19 | INFO     | core.dispatcher      | Contexto ativo: climate | Roteando confirmacao
+2026-01-02 22:58:19 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 22:58:19 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 22:58:19 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 22:58:19 | INFO     | core.domains.light   | ACAO [light] turn_on -> luz sala
+2026-01-02 22:58:19 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status 200
+2026-01-02 22:58:19 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status <Mock name='post().status_code' id='4456331152'>
+2026-01-02 22:58:19 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Timeout (5s)
+2026-01-02 22:58:19 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Connection error
+2026-01-02 22:58:19 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: 404
+2026-01-02 22:58:19 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4456364240'>
+2026-01-02 22:58:19 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4456326416'>
+2026-01-02 22:58:19 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status None
+2026-01-02 22:58:19 | ERROR    | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states ** ERRO: Network error
+2026-01-02 22:58:19 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 22:58:19 | INFO     | core.domains.light   | Processando light.all_on
+2026-01-02 22:58:19 | INFO     | core.domains.light   | Processando light.all_off
+2026-01-02 22:58:19 | INFO     | core.domains.light   | Processando light.multi
+2026-01-02 22:58:19 | INFO     | core.domains.light   | Processando light.unknown
+2026-01-02 22:58:19 | WARNING  | core.domains.light   | Intent desconhecida no dominio light: unknown
+2026-01-02 22:58:19 | INFO     | core.domains.light   | ACAO [light] turn_on -> sala
+2026-01-02 22:58:19 | INFO     | core.domains.light   | ACAO [light] turn_off -> quarto
+2026-01-02 22:58:19 | WARNING  | core.domains.light   | Luz nao encontrada: 'inexistente'
+2026-01-02 22:58:19 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 22:58:19 | INFO     | core.domains.light   | Multiplas luzes ligadas: 2 luz(es)
+2026-01-02 22:58:19 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 22:58:19 | INFO     | core.domains.light   | ACAO [light] turn_on -> luz sala
+2026-01-02 22:58:19 | INFO     | core.domains.light   | ACAO [light] turn_on -> luz quarto
+2026-01-02 22:58:20 | INFO     | core.domains.light   | ACAO [light] turn_on -> led sala
+2026-01-02 22:58:20 | INFO     | core.domains.light   | ACAO [light] turn_on -> led des quarto
+2026-01-02 22:58:20 | INFO     | core.domains.light   | ACAO [light] turn_on -> led cozinha
+2026-01-02 22:58:21 | INFO     | core.domains.light   | ACAO [light] turn_on -> led
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.on
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.on | Busca: 'ar quarto'
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.off
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar closet'
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.on
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.on | Busca: 'quarto'
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.off
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.off | Busca: 'closet'
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.all_on
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.all_on | Busca: ''
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] on -> closet
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.all_off
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.all_off | Busca: ''
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.off
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.off
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.off
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Multiplos ares ligados: ['quarto', 'closet']
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.off
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.off | Busca: 'sala'
+2026-01-02 23:15:53 | WARNING  | core.domains.climate | Comando de ar-condicionado nao compreendido: 'sala'
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.fan_on
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Ligando ventilador do ar do quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] fan_on -> quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.fan_off
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Desligando ventilador do ar do closet
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] fan_off -> closet
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.fan_on
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Ligando ventilador do ar do None
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.heater_on
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Ligando aquecedor do ar do quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] heater_on -> quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.heater_off
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Desligando aquecedor do ar do quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] heater_off -> quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.heater_on
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Ligando aquecedor do ar do closet
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.display_off
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Apagando tela do ar do quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] display_off -> quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.display_off
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Apagando tela do ar do closet
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.set_temperature
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Definindo temperatura do ar do quarto para 22°C
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] temperature_22 -> quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.set_temperature
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Definindo temperatura do ar do closet para 18°C
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] temperature_18 -> closet
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.set_temperature
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Definindo temperatura do ar do quarto para 26°C
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] temperature_26 -> quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.set_temperature
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Definindo temperatura do ar do quarto para 17°C
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.set_temperature
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Definindo temperatura do ar do quarto para 27°C
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.set_temperature
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Definindo temperatura do ar do quarto para None°C
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.set_temperature
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Definindo temperatura do ar do None para 22°C
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.set_speed
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Definindo velocidade do ar do quarto para 1
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] speed_1 -> quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.set_speed
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Definindo velocidade do ar do closet para 3
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] speed_3 -> closet
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.set_speed
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Definindo velocidade do ar do quarto para 0
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.set_speed
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Definindo velocidade do ar do quarto para 4
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.increase_speed
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Aumentando velocidade do ar do quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] increase_speed -> quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.increase_speed
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Aumentando velocidade do ar do quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] increase_speed -> quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.decrease_speed
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Diminuindo velocidade do ar do quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] decrease_speed -> quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Processando climate.decrease_speed
+2026-01-02 23:15:53 | INFO     | core.domains.climate | Diminuindo velocidade do ar do quarto
+2026-01-02 23:15:53 | INFO     | core.domains.climate | ACAO [climate] decrease_speed -> quarto
+2026-01-02 23:16:40 | INFO     | core.domains.climate | Processando climate.on
+2026-01-02 23:16:40 | INFO     | core.domains.climate | Processando climate.on | Busca: 'ar quarto'
+2026-01-02 23:16:40 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.off
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar closet'
+2026-01-02 23:16:41 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.on
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.on | Busca: 'quarto'
+2026-01-02 23:16:41 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.off
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.off | Busca: 'closet'
+2026-01-02 23:16:41 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.all_on
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.all_on | Busca: ''
+2026-01-02 23:16:41 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | ACAO [climate] on -> closet
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.all_off
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.all_off | Busca: ''
+2026-01-02 23:16:41 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.off
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.off
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 23:16:41 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.off
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Multiplos ares ligados: ['quarto', 'closet']
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.off
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.off | Busca: 'sala'
+2026-01-02 23:16:41 | WARNING  | core.domains.climate | Comando de ar-condicionado nao compreendido: 'sala'
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.fan_on
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Ligando ventilador do ar do quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | ACAO [climate] fan_on -> quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.fan_off
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Desligando ventilador do ar do closet
+2026-01-02 23:16:41 | INFO     | core.domains.climate | ACAO [climate] fan_off -> closet
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.fan_on
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Ligando ventilador do ar do None
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.heater_on
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Ligando aquecedor do ar do quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | ACAO [climate] heater_on -> quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.heater_off
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Desligando aquecedor do ar do quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | ACAO [climate] heater_off -> quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.heater_on
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Ligando aquecedor do ar do closet
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.display_off
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Apagando tela do ar do quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | ACAO [climate] display_off -> quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.display_off
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Apagando tela do ar do closet
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.set_temperature
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Definindo temperatura do ar do quarto para 22°C
+2026-01-02 23:16:41 | INFO     | core.domains.climate | ACAO [climate] temperature_22 -> quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.set_temperature
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Definindo temperatura do ar do closet para 18°C
+2026-01-02 23:16:41 | INFO     | core.domains.climate | ACAO [climate] temperature_18 -> closet
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.set_temperature
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Definindo temperatura do ar do quarto para 26°C
+2026-01-02 23:16:41 | INFO     | core.domains.climate | ACAO [climate] temperature_26 -> quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.set_temperature
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Definindo temperatura do ar do quarto para 17°C
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.set_temperature
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Definindo temperatura do ar do quarto para 27°C
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.set_temperature
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Definindo temperatura do ar do quarto para None°C
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.set_temperature
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Definindo temperatura do ar do None para 22°C
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.set_speed
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Definindo velocidade do ar do quarto para 1
+2026-01-02 23:16:41 | INFO     | core.domains.climate | ACAO [climate] speed_1 -> quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.set_speed
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Definindo velocidade do ar do closet para 3
+2026-01-02 23:16:41 | INFO     | core.domains.climate | ACAO [climate] speed_3 -> closet
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.set_speed
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Definindo velocidade do ar do quarto para 0
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.set_speed
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Definindo velocidade do ar do quarto para 4
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.increase_speed
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Aumentando velocidade do ar do quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | ACAO [climate] increase_speed -> quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.increase_speed
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Aumentando velocidade do ar do quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | ACAO [climate] increase_speed -> quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.decrease_speed
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Diminuindo velocidade do ar do quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | ACAO [climate] decrease_speed -> quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Processando climate.decrease_speed
+2026-01-02 23:16:41 | INFO     | core.domains.climate | Diminuindo velocidade do ar do quarto
+2026-01-02 23:16:41 | INFO     | core.domains.climate | ACAO [climate] decrease_speed -> quarto
+2026-01-02 23:17:12 | INFO     | friday.startup       | 
+======================================================================
+VERSAO: 260102_23
+======================================================================
+Assistente Virtual (FastAPI): FRIDAY
+STT: Whisper Fast (GPU)
+Language Model: LLAMA
+Autor: Will Reis
+
+Python Version: 3.11.14
+Status: Desenvolvimento Ativo
+
+Domínios Implementados:
+  - Light (100% cobertura)
+  - Climate (99% cobertura)
+  - Sensor (planejado)
+  - Media (planejado)
+
+Pipeline:
+  STT → Intent Parser → Dispatcher → Domínios → Home Assistant API
+
+Cobertura de Testes: 83%
+Total de Testes: 93
+
+Arquitetura:
+  - Determinismo > IA
+  - Domínios isolados
+  - Contexto técnico com TTL curto
+  - Home Assistant como backend
+  - Debug sempre possível
+
+======================================================================
+
+
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.on
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.on | Busca: 'ar quarto'
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.off
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar closet'
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.on
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.on | Busca: 'quarto'
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.off
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.off | Busca: 'closet'
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.all_on
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.all_on | Busca: ''
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] on -> quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] on -> closet
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.all_off
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.all_off | Busca: ''
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] off -> closet
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.off
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.off
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] off -> quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.off
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.off | Busca: 'ar'
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Multiplos ares ligados: ['quarto', 'closet']
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.off
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.off | Busca: 'sala'
+2026-01-02 23:17:13 | WARNING  | core.domains.climate | Comando de ar-condicionado nao compreendido: 'sala'
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.fan_on
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Ligando ventilador do ar do quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] fan_on -> quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.fan_off
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Desligando ventilador do ar do closet
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] fan_off -> closet
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.fan_on
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Ligando ventilador do ar do None
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.heater_on
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Ligando aquecedor do ar do quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] heater_on -> quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.heater_off
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Desligando aquecedor do ar do quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] heater_off -> quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.heater_on
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Ligando aquecedor do ar do closet
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.display_off
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Apagando tela do ar do quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] display_off -> quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.display_off
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Apagando tela do ar do closet
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.set_temperature
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Definindo temperatura do ar do quarto para 22°C
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] temperature_22 -> quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.set_temperature
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Definindo temperatura do ar do closet para 18°C
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] temperature_18 -> closet
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.set_temperature
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Definindo temperatura do ar do quarto para 26°C
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] temperature_26 -> quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.set_temperature
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Definindo temperatura do ar do quarto para 17°C
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.set_temperature
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Definindo temperatura do ar do quarto para 27°C
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.set_temperature
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Definindo temperatura do ar do quarto para None°C
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.set_temperature
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Definindo temperatura do ar do None para 22°C
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.set_speed
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Definindo velocidade do ar do quarto para 1
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] speed_1 -> quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.set_speed
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Definindo velocidade do ar do closet para 3
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] speed_3 -> closet
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.set_speed
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Definindo velocidade do ar do quarto para 0
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.set_speed
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Definindo velocidade do ar do quarto para 4
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.increase_speed
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Aumentando velocidade do ar do quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] increase_speed -> quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.increase_speed
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Aumentando velocidade do ar do quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] increase_speed -> quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.decrease_speed
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Diminuindo velocidade do ar do quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] decrease_speed -> quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Processando climate.decrease_speed
+2026-01-02 23:17:13 | INFO     | core.domains.climate | Diminuindo velocidade do ar do quarto
+2026-01-02 23:17:13 | INFO     | core.domains.climate | ACAO [climate] decrease_speed -> quarto
+2026-01-02 23:17:14 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 23:17:14 | INFO     | core.dispatcher      | Despachando: climate.on
+2026-01-02 23:17:14 | INFO     | core.dispatcher      | Despachando: unknown.something
+2026-01-02 23:17:14 | WARNING  | core.dispatcher      | Dominio desconhecido: unknown
+2026-01-02 23:17:14 | INFO     | core.dispatcher      | Despachando: None.on
+2026-01-02 23:17:14 | WARNING  | core.dispatcher      | Dominio desconhecido: None
+2026-01-02 23:17:14 | INFO     | core.dispatcher      | Contexto ativo: light | Roteando confirmacao
+2026-01-02 23:17:14 | INFO     | core.dispatcher      | Contexto ativo: climate | Roteando confirmacao
+2026-01-02 23:17:14 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 23:17:14 | INFO     | core.dispatcher      | Despachando: light.on
+2026-01-02 23:17:14 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 23:17:14 | INFO     | core.domains.light   | ACAO [light] turn_on -> luz sala
+2026-01-02 23:17:14 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status 200
+2026-01-02 23:17:14 | INFO     | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on -> Status <Mock name='post().status_code' id='4488761552'>
+2026-01-02 23:17:14 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Timeout (5s)
+2026-01-02 23:17:14 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: Connection error
+2026-01-02 23:17:14 | ERROR    | core.ha_client       | API [POST] http://172.30.156.7:8123/api/services/light/turn_on ** ERRO: 404
+2026-01-02 23:17:14 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4488817872'>
+2026-01-02 23:17:14 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status <Mock name='get().status_code' id='4488192400'>
+2026-01-02 23:17:14 | INFO     | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states -> Status None
+2026-01-02 23:17:14 | ERROR    | core.ha_client       | API [GET] http://172.30.156.7:8123/api/states ** ERRO: Network error
+2026-01-02 23:17:14 | INFO     | core.domains.light   | Processando light.on
+2026-01-02 23:17:14 | INFO     | core.domains.light   | Processando light.all_on
+2026-01-02 23:17:14 | INFO     | core.domains.light   | Processando light.all_off
+2026-01-02 23:17:14 | INFO     | core.domains.light   | Processando light.multi
+2026-01-02 23:17:14 | INFO     | core.domains.light   | Processando light.unknown
+2026-01-02 23:17:14 | WARNING  | core.domains.light   | Intent desconhecida no dominio light: unknown
+2026-01-02 23:17:14 | INFO     | core.domains.light   | ACAO [light] turn_on -> sala
+2026-01-02 23:17:14 | INFO     | core.domains.light   | ACAO [light] turn_off -> quarto
+2026-01-02 23:17:14 | WARNING  | core.domains.light   | Luz nao encontrada: 'inexistente'
+2026-01-02 23:17:14 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 23:17:14 | INFO     | core.domains.light   | Multiplas luzes ligadas: 2 luz(es)
+2026-01-02 23:17:14 | INFO     | core.domains.light   | ACAO [light] turn_off -> light.sala
+2026-01-02 23:17:14 | INFO     | core.domains.light   | ACAO [light] turn_on -> luz sala
+2026-01-02 23:17:14 | INFO     | core.domains.light   | ACAO [light] turn_on -> luz quarto
+2026-01-02 23:17:15 | INFO     | core.domains.light   | ACAO [light] turn_on -> led sala
+2026-01-02 23:17:15 | INFO     | core.domains.light   | ACAO [light] turn_on -> led des quarto
+2026-01-02 23:17:16 | INFO     | core.domains.light   | ACAO [light] turn_on -> led cozinha
+2026-01-02 23:17:16 | INFO     | core.domains.light   | ACAO [light] turn_on -> led
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Processando sensor.query_sensor
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Query sensor: temperature do quarto
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Processando sensor.query_sensor
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Query sensor: temperature do closet
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Processando sensor.query_sensor
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Query sensor: humidity do sala
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Processando sensor.query_sensor
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Query sensor: temperature do None
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Processando sensor.query_sensor
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Query sensor: temperature do quarto
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Processando sensor.compare_sensors
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Comparando temperature entre ['quarto', 'closet']
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Processando sensor.compare_sensors
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Comparando temperature entre ['quarto', 'closet']
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Processando sensor.compare_sensors
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Comparando humidity entre ['quarto', 'closet']
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Processando sensor.compare_sensors
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Processando sensor.compare_sensors
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Processando sensor.compare_all_sensors
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Comparando temperature entre todos os ambientes (highest)
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Processando sensor.compare_all_sensors
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Comparando temperature entre todos os ambientes (lowest)
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Processando sensor.compare_all_sensors
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Comparando humidity entre todos os ambientes (highest)
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Processando sensor.compare_all_sensors
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Comparando temperature entre todos os ambientes (highest)
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Processando sensor.query_sensor
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Query sensor: temperature do quarto
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Processando sensor.compare_sensors
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Comparando temperature entre ['quarto', 'closet']
+2026-01-02 23:57:44 | INFO     | core.domains.sensor  | Processando sensor.unknown_sensor_intent

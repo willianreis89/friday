@@ -322,3 +322,81 @@ class TestParseEdgeCases:
         assert result["domain"] == "light"
         # search deve ter "luz" como default
         assert "luz" in result["search"]
+
+
+class TestParseSensorQueries:
+    """Testes para parsing de queries de sensor"""
+    
+    def test_parse_query_temperatura_quarto(self):
+        """Deve parsear 'Qual a temperatura do quarto?'"""
+        result = parse("Qual a temperatura do quarto?")
+        assert result["intent"] == "query_sensor"
+        assert result["domain"] == "sensor"
+        assert result["room"] == "quarto"
+    
+    def test_parse_query_temperatura_closet(self):
+        """Deve parsear 'Qual a temperatura do closet?'"""
+        result = parse("Qual a temperatura do closet?")
+        assert result["intent"] == "query_sensor"
+        assert result["domain"] == "sensor"
+        assert result["room"] == "closet"
+    
+    def test_parse_query_externa(self):
+        """Deve parsear queries com 'externa' ou 'sacada'"""
+        result = parse("Qual a temperatura da sacada?")
+        assert result["intent"] == "query_sensor"
+        assert result["domain"] == "sensor"
+        assert result["room"] == "externa"
+    
+    def test_parse_query_umidade_quarto(self):
+        """Deve parsear query de umidade"""
+        result = parse("Qual a umidade do quarto?")
+        assert result["intent"] == "query_sensor"
+        assert result["domain"] == "sensor"
+        assert result["room"] == "quarto"
+
+
+class TestParseSensorComparisons:
+    """Testes para parsing de comparações de sensores"""
+    
+    def test_parse_compare_qual_mais_quente(self):
+        """Deve parsear 'Qual ambiente está mais quente?'"""
+        result = parse("Qual ambiente está mais quente?")
+        assert result["intent"] == "compare_all_sensors"
+        assert result["domain"] == "sensor"
+        assert result["sensor_type"] == "temperature"
+        assert result["comparison_type"] == "highest"
+    
+    def test_parse_compare_quarto_ou_closet(self):
+        """Deve parsear 'Onde está mais frio, quarto ou closet?'"""
+        result = parse("Onde está mais frio, quarto ou closet?")
+        assert result["intent"] == "compare_sensors"
+        assert result["domain"] == "sensor"
+        assert result["sensor_type"] == "temperature"
+        assert "quarto" in result["rooms"]
+        assert "closet" in result["rooms"]
+    
+    def test_parse_compare_quarto_vs_externa(self):
+        """Deve parsear comparação entre quarto e externa"""
+        result = parse("Qual está mais quente, quarto ou sacada?")
+        assert result["intent"] == "compare_sensors"
+        assert result["domain"] == "sensor"
+        assert result["sensor_type"] == "temperature"
+        assert "quarto" in result["rooms"]
+        assert "externa" in result["rooms"]
+    
+    def test_parse_compare_temperatura_mais_alta(self):
+        """Deve parsear 'Qual a temperatura mais alta da casa?'"""
+        result = parse("Qual a temperatura mais alta da casa?")
+        assert result["intent"] == "compare_all_sensors"
+        assert result["domain"] == "sensor"
+        assert result["sensor_type"] == "temperature"
+        assert result["comparison_type"] == "highest"
+    
+    def test_parse_compare_qual_mais_frio(self):
+        """Deve parsear 'Qual está mais frio?'"""
+        result = parse("Qual está mais frio?")
+        assert result["intent"] == "compare_all_sensors"
+        assert result["domain"] == "sensor"
+        assert result["sensor_type"] == "temperature"
+        assert result["comparison_type"] == "lowest"
