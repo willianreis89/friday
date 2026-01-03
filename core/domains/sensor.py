@@ -20,6 +20,11 @@ SENSOR_MAPPING = {
         "sacada": "sensor.sensor_temp_outside_humidity",
         "closet": "sensor.esp32relaysmesas_closet_room_humidity",
         "quarto": "sensor.sensor_temp_quarto_humidity",
+    },
+    "window": {
+        "closet": "binary_sensor.janela_closet_contact",
+        "quarto": "binary_sensor.janela_quarto_contact",
+        "banheiro": "binary_sensor.sonoff_1001879d3a",
     }
 }
 
@@ -28,7 +33,8 @@ ROOM_DISPLAY_NAMES = {
     "externa": "externa/sacada",
     "sacada": "externa/sacada",
     "closet": "closet",
-    "quarto": "quarto"
+    "quarto": "quarto",
+    "banheiro": "banheiro"
 }
 
 # Unidades e formatação
@@ -101,6 +107,12 @@ def handle(intent: dict):
         return handle_compare_sensors(intent)
     elif action == "compare_all_sensors":
         return handle_compare_all_sensors(intent)
+    elif action == "query_window":
+        return handle_query_window(intent)
+    elif action == "list_windows_open":
+        return handle_list_windows_open(intent)
+    elif action == "list_windows_closed":
+        return handle_list_windows_closed(intent)
     
     return {"message": "Não entendi a query de sensor."}
 
@@ -271,3 +283,118 @@ def handle_compare_all_sensors(intent: dict):
             }
     
     return {"message": f"O {room_display} tem o {sensor_type} em {formatted_value}."}
+# ============================================================
+# ==================== WINDOW HANDLERS ======================
+# ============================================================
+
+def handle_query_window(intent: dict):
+    """
+    Responde query específica de janela.
+    
+    Exemplo: "A janela do closet esta aberta?"
+    Response: "Sim, está aberta." ou "Não, está fechada."
+    """
+    room = intent.get("room")
+    question_type = intent.get("question_type")  # "open" or "closed"
+    
+    if not room:
+        return {"message": "Qual janela você quer verificar?"}
+    
+    try:
+        value, entity_id = get_sensor_value("window", room)
+        
+        if value is None:
+            room_display = get_room_display_name(room)
+            return {"message": f"Não consegui obter dados da janela do {room_display}."}
+        
+        room_display = get_room_display_name(room)
+        is_open = value.lower() == "on"
+        
+        if question_type == "open":
+            # User asked: "está aberta?"
+            if is_open:
+                return {"message": f"Sim, está aberta."}
+            else:
+                return {"message": f"Não, está fechada."}
+        else:  # question_type == "closed"
+            # User asked: "está fechada?"
+            if is_open:
+                return {"message": f"Não, está aberta."}
+            else:
+                return {"message": f"Sim, está fechada."}
+    
+    except Exception as e:
+        logger.error(f"Erro ao buscar dados da janela: {str(e)}")
+        return {"message": f"Erro ao buscar dados da janela."}
+
+def handle_list_windows_open(intent: dict):
+    """
+    Lista as janelas abertas.
+    
+    Exemplo: "Quais janelas estão abertas?"
+    Response: "A janela do quarto e do closet estão abertas."
+    """
+    try:
+        open_windows = []
+        
+        for room in SENSOR_MAPPING["window"].keys():
+            value, entity_id = get_sensor_value("window", room)
+            if value and value.lower() == "on":
+                open_windows.append(room)
+        
+        if not open_windows:
+            return {"message": "Todas as janelas estão fechadas."}
+        
+        # Format response
+        room_names = [get_room_display_name(room) for room in open_windows]
+        
+        if len(room_names) == 1:
+            return {"message": f"A janela do {room_names[0]} está aberta."}
+        else:
+            # "A janela do quarto e do closet estão abertas"
+            last = room_names.pop()
+            rooms_str = " e do ".join(room_names) if room_names else ""
+            if rooms_str:
+                return {"message": f"A janela do {rooms_str} e do {last} estão abertas."}
+            else:
+                return {"message": f"A janela do {last} está aberta."}
+    
+    except Exception as e:
+        logger.error(f"Erro ao listar janelas abertas: {str(e)}")
+        return {"message": "Erro ao buscar status das janelas."}
+
+def handle_list_windows_closed(intent: dict):
+    """
+    Lista as janelas fechadas.
+    
+    Exemplo: "Quais janelas estão fechadas?"
+    Response: "A janela do banheiro está fechada."
+    """
+    try:
+        closed_windows = []
+        
+        for room in SENSOR_MAPPING["window"].keys():
+            value, entity_id = get_sensor_value("window", room)
+            if value and value.lower() == "off":
+                closed_windows.append(room)
+        
+        if not closed_windows:
+            return {"message": "Todas as janelas estão abertas."}
+        
+        # Format response
+        room_names = [get_room_display_name(room) for room in closed_windows]
+        
+        if len(room_names) == 1:
+            return {"message": f"A janela do {room_names[0]} está fechada."}
+        else:
+            # "A janela do quarto e do closet estão fechadas"
+            last = room_names.pop()
+            rooms_str = " e do ".join(room_names) if room_names else ""
+            if rooms_str:
+                return {"message": f"A janela do {rooms_str} e do {last} estão fechadas."}
+            else:
+                return {"message": f"A janela do {last} está fechada."}
+    
+    except Exception as e:
+        logger.error(f"Erro ao listar janelas fechadas: {str(e)}")
+        return {"message": "Erro ao buscar status das janelas."}

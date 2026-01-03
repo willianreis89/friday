@@ -57,6 +57,8 @@ def extract_room_for_query(text_lower: str) -> str | None:
         return "quarto"
     if "closet" in text_lower:
         return "closet"
+    if "banheiro" in text_lower:
+        return "banheiro"
     if "externa" in text_lower or "sacada" in text_lower:
         return "externa"
     return None
@@ -67,6 +69,7 @@ def extract_rooms_for_comparison(text_lower: str) -> list[str]:
     room_keywords = {
         "quarto": ["quarto"],
         "closet": ["closet"],
+        "banheiro": ["banheiro"],
         "externa": ["externa", "sacada"]
     }
     
@@ -99,7 +102,8 @@ SENSOR_QUERY_PATTERNS = {
     "temperature": ["temperatura", "graus", "quente", "frio", "como está"],
     "humidity": ["umidade", "úmidade"],
     "light": ["luminosidade", "claridade"],
-    "motion": ["movimento", "detectou"]
+    "motion": ["movimento", "detectou"],
+    "window": ["janela", "janelas", "aberta", "aberto", "fechada", "fechado"]
 }
 
 # Sensor comparison patterns (para comparações entre ambientes)
@@ -117,16 +121,23 @@ def parse(text: str):
 
     # ---- SENSOR QUERIES (HIGH PRIORITY - check before climate)
     # Check if this is a query/question with sensor keywords
-    # Pergunta típica: "Qual a temperatura do quarto?" "Onde está mais quente?"
-    query_keywords = ["qual", "quanto", "como está", "quantos", "onde"]
-    is_asking = any(keyword in text_lower for keyword in query_keywords)
+    # Pergunta típica: "Qual a temperatura do quarto?" "Onde está mais quente?" "A janela está aberta?"
+    # Use word boundaries to avoid matching "temperatura" when looking for "tem"
+    query_words = ["qual ", "quais ", "quanto ", "como está", "quantos ", "onde ", " tem "]
+    is_asking = any(keyword in (" " + text_lower + " ") for keyword in query_words)
     
-    # If it's a question (qual, quanto, etc) and has no climate action keywords (ligar, desligar, aumentar, diminuir, setar)
+    # Special handling for "está" and "esta" - only treat as question if it's about windows
+    if not is_asking and ("está" in text_lower or "esta" in text_lower):
+        # Check if it's a window query like "A janela está aberta?"
+        if "janela" in text_lower:
+            is_asking = True
+    
+    # If it's a question (qual, quanto, etc) and has no climate action keywords (ligar, desligar, aumentar, diminuir, setar, colocar)
     # then treat as sensor query
     if is_asking:
         has_climate_action = any(
             action in text_lower 
-            for action in ACTIONS_ON + ACTIONS_OFF + ["aumentar", "diminuir", "subir", "reduzir", "setar"]
+            for action in ACTIONS_ON + ACTIONS_OFF + ["aumentar", "diminuir", "subir", "reduzir", "setar", "colocar", "definir"]
         )
         
         # If no climate action intent, check for sensor keywords
@@ -148,42 +159,102 @@ def parse(text: str):
                     sensor_type = "light"
                 elif any(t in text_lower for t in SENSOR_QUERY_PATTERNS["motion"]):
                     sensor_type = "motion"
+                elif any(t in text_lower for t in SENSOR_QUERY_PATTERNS["window"]):
+                    sensor_type = "window"
                 
                 if sensor_type:
-                    # Detecta comparação (múltiplos ambientes)
-                    has_comparison = " ou " in text_lower or "vs" in text_lower or "mais" in text_lower
+                    # Special handling for window queries
+                    if sensor_type == "window":
+                        # "Quais janelas estão abertas?" or "Tem alguma janela aberta?"
+                        if "quais" in text_lower or "tem" in text_lower or "alguma" in text_lower:
+                            # Check if asking about all windows or specific state
+                            if "aberta" in text_lower or "aberto" in text_lower:
+                                return {
+                                    "intent": "list_windows_open",
+                                    "domain": "sensor",
+                                    "sensor_type": "window",
+                                    "state": "open",
+                                    "text": text
+                                }
+                            elif "fechada" in text_lower or "fechado" in text_lower:
+                                return {
+                                    "intent": "list_windows_closed",
+                                    "domain": "sensor",
+                                    "sensor_type": "window",
+                                    "state": "closed",
+                                    "text": text
+                                }
+                        
+                        # Check for general window query without room: "A janela está aberta?"
+                        room = extract_room_for_query(text_lower)
+                        if room:
+                            # Specific window query: "A janela do closet esta aberta?"
+                            is_open_question = "aberta" in text_lower or "aberto" in text_lower
+                            is_closed_question = "fechada" in text_lower or "fechado" in text_lower
+                            
+                            if is_open_question or is_closed_question:
+                                return {
+                                    "intent": "query_window",
+                                    "domain": "sensor",
+                                    "sensor_type": "window",
+                                    "room": room,
+                                    "question_type": "open" if is_open_question else "closed",
+                                    "text": text
+                                }
+                        else:
+                            # General window query without specific room
+                            if "aberta" in text_lower or "aberto" in text_lower:
+                                return {
+                                    "intent": "list_windows_open",
+                                    "domain": "sensor",
+                                    "sensor_type": "window",
+                                    "state": "open",
+                                    "text": text
+                                }
+                            elif "fechada" in text_lower or "fechado" in text_lower:
+                                return {
+                                    "intent": "list_windows_closed",
+                                    "domain": "sensor",
+                                    "sensor_type": "window",
+                                    "state": "closed",
+                                    "text": text
+                                }
                     
-                    if has_comparison:
-                        # Extrai dois ambientes para comparar
-                        rooms = extract_rooms_for_comparison(text_lower)
-                        if len(rooms) >= 2:
-                            return {
-                                "intent": "compare_sensors",
-                                "domain": "sensor",
-                                "sensor_type": sensor_type,
-                                "rooms": rooms,
-                                "text": text
-                            }
-                        elif "mais" in text_lower and ("quente" in text_lower or "frio" in text_lower or "alta" in text_lower or "baixa" in text_lower):
-                            # Query como "qual ambiente está mais quente" - precisa comparar todos
-                            return {
-                                "intent": "compare_all_sensors",
-                                "domain": "sensor",
-                                "sensor_type": sensor_type,
-                                "comparison_type": "highest" if ("quente" in text_lower or "alta" in text_lower) else "lowest",
-                                "text": text
-                            }
-                    
-                    # Query simples de um sensor
-                    room = extract_room_for_query(text_lower)
-                    
-                    return {
-                        "intent": "query_sensor",
-                        "domain": "sensor",
-                        "sensor_type": sensor_type,
-                        "room": room,
-                        "text": text
-                    }
+                    # Detecta comparação (múltiplos ambientes) - não para windows
+                    if sensor_type != "window":
+                        has_comparison = " ou " in text_lower or "vs" in text_lower or "mais" in text_lower
+                        
+                        if has_comparison:
+                            # Extrai dois ambientes para comparar
+                            rooms = extract_rooms_for_comparison(text_lower)
+                            if len(rooms) >= 2:
+                                return {
+                                    "intent": "compare_sensors",
+                                    "domain": "sensor",
+                                    "sensor_type": sensor_type,
+                                    "rooms": rooms,
+                                    "text": text
+                                }
+                            elif "mais" in text_lower and ("quente" in text_lower or "frio" in text_lower or "alta" in text_lower or "baixa" in text_lower):
+                                # Query como "qual ambiente está mais quente" - precisa comparar todos
+                                return {
+                                    "intent": "compare_all_sensors",
+                                    "domain": "sensor",
+                                    "sensor_type": sensor_type,
+                                    "comparison_type": "highest" if ("quente" in text_lower or "alta" in text_lower) else "lowest",
+                                    "text": text
+                                }
+                        
+                        # Query simples de um sensor
+                        room = extract_room_for_query(text_lower)
+                        
+                        return {
+                            "intent": "query_sensor",
+                            "domain": "sensor",
+                            "sensor_type": sensor_type,
+                            "room": room,
+                            "text": text
+                        }
 
 
     # ---- VERIFICA FEATURES DE CLIMATE (antes de checar por "ar")
