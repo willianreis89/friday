@@ -156,6 +156,150 @@ class TestParseClimate:
         assert result["domain"] == "climate"
 
 
+class TestParseClimateFan:
+    """Testes para parsing de comandos de ventilador do ar"""
+    
+    def test_parse_fan_on_quarto(self):
+        """Deve parsear ligar ventilador do quarto"""
+        result = parse("ligar ventilador do ar do quarto")
+        assert result["intent"] == "fan_on"
+        assert result["domain"] == "climate"
+        assert result["room"] == "quarto"
+    
+    def test_parse_fan_off_closet(self):
+        """Deve parsear desligar ventilador do closet"""
+        result = parse("desligar ventilador closet")
+        assert result["intent"] == "fan_off"
+        assert result["domain"] == "climate"
+        assert result["room"] == "closet"
+    
+    def test_parse_fan_on_sem_comodo(self):
+        """Deve parsear fan_on mesmo sem comodo especificado"""
+        result = parse("ligar ventilador")
+        assert result["intent"] == "fan_on"
+        assert result["domain"] == "climate"
+
+
+class TestParseClimateHeater:
+    """Testes para parsing de comandos de aquecedor"""
+    
+    def test_parse_heater_on_quarto(self):
+        """Deve parsear ligar aquecedor"""
+        result = parse("ligar aquecedor quarto")
+        assert result["intent"] == "heater_on"
+        assert result["domain"] == "climate"
+        assert result["room"] == "quarto"
+    
+    def test_parse_heater_off_quarto(self):
+        """Deve parsear desligar aquecedor"""
+        result = parse("desligar aquecimento do ar do quarto")
+        assert result["intent"] == "heater_off"
+        assert result["domain"] == "climate"
+        assert result["room"] == "quarto"
+
+
+class TestParseClimateTemperature:
+    """Testes para parsing de comandos de temperatura"""
+    
+    def test_parse_set_temperature_22(self):
+        """Deve parsear definir temperatura para 22°C"""
+        result = parse("colocar temperatura 22 graus")
+        assert result["intent"] == "set_temperature"
+        assert result["domain"] == "climate"
+        assert result["value"] == 22
+    
+    def test_parse_set_temperature_18(self):
+        """Deve parsear definir temperatura minima"""
+        result = parse("definir temperatura 18")
+        assert result["intent"] == "set_temperature"
+        assert result["value"] == 18
+    
+    def test_parse_set_temperature_26(self):
+        """Deve parsear definir temperatura maxima"""
+        result = parse("temperatura 26 graus quarto")
+        assert result["intent"] == "set_temperature"
+        assert result["value"] == 26
+        assert result["room"] == "quarto"
+    
+    def test_parse_temperature_range(self):
+        """Deve parsear range de temperatura (18-26)"""
+        result = parse("colocar temperatura entre 18 e 26 graus")
+        assert result["intent"] == "set_temperature"
+        # Deve extrair o primeiro valor do range
+        assert result["value"] == 18
+    
+    def test_parse_temperature_sem_valor(self):
+        """Deve retornar erro se temperatura sem valor"""
+        result = parse("colocar temperatura")
+        assert result["intent"] == "error"
+        assert "temperatura" in result["response"].lower()
+
+
+class TestParseClimateSpeed:
+    """Testes para parsing de comandos de velocidade do ventilador"""
+    
+    def test_parse_set_speed_1(self):
+        """Deve parsear definir velocidade para 1"""
+        result = parse("velocidade 1 quarto")
+        assert result["intent"] == "set_speed"
+        assert result["domain"] == "climate"
+        assert result["value"] == 1
+        assert result["room"] == "quarto"
+    
+    def test_parse_set_speed_3(self):
+        """Deve parsear definir velocidade para 3"""
+        result = parse("colocar velocidade 3 no ar")
+        assert result["intent"] == "set_speed"
+        assert result["value"] == 3
+    
+    def test_parse_increase_speed(self):
+        """Deve parsear aumentar velocidade"""
+        result = parse("aumentar velocidade do ar quarto")
+        assert result["intent"] == "increase_speed"
+        assert result["domain"] == "climate"
+        assert result["room"] == "quarto"
+    
+    def test_parse_increase_speed_subir(self):
+        """Deve parsear subir velocidade (alias)"""
+        result = parse("subir velocidade closet")
+        assert result["intent"] == "increase_speed"
+        assert result["room"] == "closet"
+    
+    def test_parse_decrease_speed(self):
+        """Deve parsear diminuir velocidade"""
+        result = parse("abaixar velocidade quarto")
+        assert result["intent"] == "decrease_speed"
+        assert result["room"] == "quarto"
+    
+    def test_parse_decrease_speed_reduzir(self):
+        """Deve parsear reduzir velocidade (alias)"""
+        result = parse("reduzir velocidade do ar")
+        assert result["intent"] == "decrease_speed"
+
+
+class TestParseClimateDisplay:
+    """Testes para parsing de comandos de display/tela"""
+    
+    def test_parse_display_off_quarto(self):
+        """Deve parsear desligar tela do quarto"""
+        result = parse("apagar tela do ar quarto")
+        assert result["intent"] == "display_off"
+        assert result["domain"] == "climate"
+        assert result["room"] == "quarto"
+    
+    def test_parse_display_off_closet(self):
+        """Deve parsear desligar display do closet"""
+        result = parse("desligar display closet")
+        assert result["intent"] == "display_off"
+        assert result["room"] == "closet"
+    
+    def test_parse_display_off_com_scoreboard(self):
+        """Deve parsear desligar scoreboard"""
+        result = parse("desligar scoreboard quarto")
+        assert result["intent"] == "display_off"
+        assert result["room"] == "quarto"
+
+
 class TestParseEdgeCases:
     """Testes para casos extremos"""
     

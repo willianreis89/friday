@@ -280,3 +280,299 @@ class TestHandleConfirmation:
         assert "desligado" in result["message"].lower()
         # Contexto deve ser limpo
         assert not context.valid()
+
+
+class TestFanFeature:
+    """Testes para controle de ventilador"""
+    
+    def setup_method(self):
+        """Limpa contexto antes de cada teste"""
+        context.clear()
+    
+    @patch('core.domains.climate.call_service')
+    def test_fan_on_quarto(self, mock_call):
+        """Deve ligar ventilador do quarto"""
+        mock_call.return_value = True
+        
+        intent = {"intent": "fan_on", "room": "quarto"}
+        result = handle(intent)
+        
+        mock_call.assert_called_once_with("script", "ventilar_ar_lg_quarto", {})
+        assert "ventilador" in result["message"].lower()
+        assert "quarto" in result["message"].lower()
+    
+    @patch('core.domains.climate.call_service')
+    def test_fan_off_closet(self, mock_call):
+        """Deve desligar ventilador do closet"""
+        mock_call.return_value = True
+        
+        intent = {"intent": "fan_off", "room": "closet"}
+        result = handle(intent)
+        
+        mock_call.assert_called_once()
+        assert "ventilador" in result["message"].lower()
+        assert "closet" in result["message"].lower()
+    
+    def test_fan_on_sem_comodo(self):
+        """Deve retornar erro se cômodo não especificado"""
+        intent = {"intent": "fan_on", "room": None}
+        result = handle(intent)
+        
+        assert "qual comodo" in result["message"].lower() or "quarto" in result["message"].lower()
+
+
+class TestHeaterFeature:
+    """Testes para controle de aquecedor"""
+    
+    def setup_method(self):
+        """Limpa contexto antes de cada teste"""
+        context.clear()
+    
+    @patch('core.domains.climate.call_service')
+    def test_heater_on_quarto(self, mock_call):
+        """Deve ligar aquecedor do quarto"""
+        mock_call.return_value = True
+        
+        intent = {"intent": "heater_on", "room": "quarto"}
+        result = handle(intent)
+        
+        mock_call.assert_called_once_with("script", "quente_ar_lg_quarto", {})
+        assert "aquecedor" in result["message"].lower()
+        assert "quarto" in result["message"].lower()
+    
+    @patch('core.domains.climate.call_service')
+    def test_heater_off_quarto(self, mock_call):
+        """Deve desligar aquecedor do quarto"""
+        mock_call.return_value = True
+        
+        intent = {"intent": "heater_off", "room": "quarto"}
+        result = handle(intent)
+        
+        mock_call.assert_called_once()
+        assert "aquecedor" in result["message"].lower()
+    
+    def test_heater_on_closet_nao_disponivel(self):
+        """Closet nao tem aquecedor, deve retornar erro"""
+        intent = {"intent": "heater_on", "room": "closet"}
+        result = handle(intent)
+        
+        assert "nao disponivel" in result["message"].lower() or "closet" in result["message"].lower()
+
+
+class TestDisplayFeature:
+    """Testes para controle de tela/display"""
+    
+    def setup_method(self):
+        """Limpa contexto antes de cada teste"""
+        context.clear()
+    
+    @patch('core.domains.climate.call_service')
+    def test_display_off_quarto(self, mock_call):
+        """Deve apagar tela do quarto via controle remoto"""
+        mock_call.return_value = True
+        
+        intent = {"intent": "display_off", "room": "quarto"}
+        result = handle(intent)
+        
+        # Deve chamar remote.send_command
+        call_args = mock_call.call_args[0]
+        assert call_args[0] == "remote"
+        assert call_args[1] == "send_command"
+        assert "tela" in result["message"].lower()
+    
+    def test_display_off_closet_nao_disponivel(self):
+        """Closet nao tem controle remoto de display"""
+        intent = {"intent": "display_off", "room": "closet"}
+        result = handle(intent)
+        
+        assert "nao disponivel" in result["message"].lower() or "closet" in result["message"].lower()
+
+
+class TestTemperatureFeature:
+    """Testes para controle de temperatura"""
+    
+    def setup_method(self):
+        """Limpa contexto antes de cada teste"""
+        context.clear()
+    
+    @patch('core.domains.climate.call_service')
+    def test_set_temperature_22_quarto(self, mock_call):
+        """Deve definir temperatura para 22°C no quarto"""
+        mock_call.return_value = True
+        
+        intent = {"intent": "set_temperature", "room": "quarto", "value": 22}
+        result = handle(intent)
+        
+        mock_call.assert_called_once()
+        call_args = mock_call.call_args
+        # call_service("input_number", "set_value", {"entity_id": ..., "value": 22})
+        assert call_args[0][0] == "input_number"
+        assert call_args[0][1] == "set_value"
+        assert call_args[0][2]["value"] == 22
+        assert "22" in result["message"]
+    
+    @patch('core.domains.climate.call_service')
+    def test_set_temperature_18_closet(self, mock_call):
+        """Deve definir temperatura minima (18°C)"""
+        mock_call.return_value = True
+        
+        intent = {"intent": "set_temperature", "room": "closet", "value": 18}
+        result = handle(intent)
+        
+        mock_call.assert_called_once()
+        assert "18" in result["message"]
+    
+    @patch('core.domains.climate.call_service')
+    def test_set_temperature_26_quarto(self, mock_call):
+        """Deve definir temperatura maxima (26°C)"""
+        mock_call.return_value = True
+        
+        intent = {"intent": "set_temperature", "room": "quarto", "value": 26}
+        result = handle(intent)
+        
+        mock_call.assert_called_once()
+        assert "26" in result["message"]
+    
+    def test_set_temperature_abaixo_minimo(self):
+        """Deve rejeitar temperatura abaixo de 18°C"""
+        intent = {"intent": "set_temperature", "room": "quarto", "value": 17}
+        result = handle(intent)
+        
+        assert "18" in result["message"] and "26" in result["message"]
+        assert "invalida" in result["message"].lower() or "entre" in result["message"].lower()
+    
+    def test_set_temperature_acima_maximo(self):
+        """Deve rejeitar temperatura acima de 26°C"""
+        intent = {"intent": "set_temperature", "room": "quarto", "value": 27}
+        result = handle(intent)
+        
+        assert "18" in result["message"] and "26" in result["message"]
+    
+    def test_set_temperature_sem_valor(self):
+        """Deve retornar erro se temperatura nao especificada"""
+        intent = {"intent": "set_temperature", "room": "quarto", "value": None}
+        result = handle(intent)
+        
+        assert "temperatura" in result["message"].lower()
+    
+    def test_set_temperature_sem_comodo(self):
+        """Deve retornar erro se cômodo nao especificado"""
+        intent = {"intent": "set_temperature", "room": None, "value": 22}
+        result = handle(intent)
+        
+        assert "qual comodo" in result["message"].lower() or "quarto" in result["message"].lower()
+
+
+class TestFanSpeedFeature:
+    """Testes para controle de velocidade do ventilador"""
+    
+    def setup_method(self):
+        """Limpa contexto antes de cada teste"""
+        context.clear()
+    
+    @patch('core.domains.climate.call_service')
+    def test_set_speed_1_quarto(self, mock_call):
+        """Deve definir velocidade para 1"""
+        mock_call.return_value = True
+        
+        intent = {"intent": "set_speed", "room": "quarto", "value": 1}
+        result = handle(intent)
+        
+        mock_call.assert_called_once()
+        call_args = mock_call.call_args
+        assert call_args[0][0] == "input_number"
+        assert call_args[0][1] == "set_value"
+        assert call_args[0][2]["value"] == 1
+        assert "1" in result["message"]
+    
+    @patch('core.domains.climate.call_service')
+    def test_set_speed_3_closet(self, mock_call):
+        """Deve definir velocidade para 3 (máxima)"""
+        mock_call.return_value = True
+        
+        intent = {"intent": "set_speed", "room": "closet", "value": 3}
+        result = handle(intent)
+        
+        mock_call.assert_called_once()
+        assert "3" in result["message"]
+    
+    def test_set_speed_zero(self):
+        """Deve rejeitar velocidade 0"""
+        intent = {"intent": "set_speed", "room": "quarto", "value": 0}
+        result = handle(intent)
+        
+        assert "1" in result["message"] and "3" in result["message"]
+    
+    def test_set_speed_acima_maximo(self):
+        """Deve rejeitar velocidade acima de 3"""
+        intent = {"intent": "set_speed", "room": "quarto", "value": 4}
+        result = handle(intent)
+        
+        assert "1" in result["message"] and "3" in result["message"]
+    
+    @patch('core.domains.climate.get_state')
+    @patch('core.domains.climate.call_service')
+    def test_increase_speed_de_1_para_2(self, mock_call, mock_get_state):
+        """Deve aumentar velocidade de 1 para 2"""
+        mock_get_state.return_value = "1"
+        mock_call.return_value = True
+        
+        intent = {"intent": "increase_speed", "room": "quarto"}
+        result = handle(intent)
+        
+        mock_call.assert_called_once()
+        call_args = mock_call.call_args
+        assert call_args[0][0] == "input_number"
+        assert call_args[0][1] == "set_value"
+        assert call_args[0][2]["value"] == 2
+        assert "2" in result["message"]
+    
+    @patch('core.domains.climate.get_state')
+    @patch('core.domains.climate.call_service')
+    def test_increase_speed_de_3_permanece_3(self, mock_call, mock_get_state):
+        """Deve manter velocidade em 3 (máxima)"""
+        mock_get_state.return_value = "3"
+        mock_call.return_value = True
+        
+        intent = {"intent": "increase_speed", "room": "quarto"}
+        result = handle(intent)
+        
+        mock_call.assert_called_once()
+        call_args = mock_call.call_args
+        assert call_args[0][0] == "input_number"
+        assert call_args[0][1] == "set_value"
+        assert call_args[0][2]["value"] == 3
+    
+    @patch('core.domains.climate.get_state')
+    @patch('core.domains.climate.call_service')
+    def test_decrease_speed_de_3_para_2(self, mock_call, mock_get_state):
+        """Deve diminuir velocidade de 3 para 2"""
+        mock_get_state.return_value = "3"
+        mock_call.return_value = True
+        
+        intent = {"intent": "decrease_speed", "room": "quarto"}
+        result = handle(intent)
+        
+        mock_call.assert_called_once()
+        call_args = mock_call.call_args
+        assert call_args[0][0] == "input_number"
+        assert call_args[0][1] == "set_value"
+        assert call_args[0][2]["value"] == 2
+        assert "2" in result["message"]
+    
+    @patch('core.domains.climate.get_state')
+    @patch('core.domains.climate.call_service')
+    def test_decrease_speed_de_1_permanece_1(self, mock_call, mock_get_state):
+        """Deve manter velocidade em 1 (mínima)"""
+        mock_get_state.return_value = "1"
+        mock_call.return_value = True
+        
+        intent = {"intent": "decrease_speed", "room": "quarto"}
+        result = handle(intent)
+        
+        mock_call.assert_called_once()
+        call_args = mock_call.call_args
+        assert call_args[0][0] == "input_number"
+        assert call_args[0][1] == "set_value"
+        assert call_args[0][2]["value"] == 1
+
